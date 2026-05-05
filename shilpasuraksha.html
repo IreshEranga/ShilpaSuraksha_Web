@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ShilpaSuraksha – Academic Risk Prediction System</title>
+<link rel="icon" type="image/png" href="../../ShilpaSuraksha_LOGO.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ─── Design Tokens ──────────────────────────────────────────────────────── */
@@ -1138,44 +1139,51 @@
   // ─── Contact form submission via Web3Forms ────────────────────────────────
   async function handleSubmit(e) {
     e.preventDefault();
-    const btn       = document.getElementById('submitBtn');
-    const btnText   = document.getElementById('btnText');
-    const btnSpinner= document.getElementById('btnSpinner');
-    const formError = document.getElementById('formError');
+    const btn        = document.getElementById('submitBtn');
+    const btnText    = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const formError  = document.getElementById('formError');
 
     formError.style.display = 'none';
     btn.disabled   = true;
     btnText.style.display   = 'none';
     btnSpinner.style.display= 'inline';
 
-    const json = JSON.stringify(Object.fromEntries(new FormData(e.target)));
+    // FIX: Send raw FormData instead of converting to JSON. 
+    // This is much more reliable for Web3Forms and avoids CORS preflight issues.
+    const formData = new FormData(e.target);
 
     try {
-      const res    = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: json
+        // Note: Do not set 'Content-Type' when sending FormData. 
+        // The browser automatically sets it to 'multipart/form-data' with the correct boundaries.
+        body: formData
       });
+      
       const result = await res.json();
 
       if (result.success) {
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
-        formError.textContent    = result.message || 'Something went wrong. Please try again.';
-        formError.style.display  = 'block';
-        btn.disabled             = false;
-        btnText.style.display    = 'inline';
+        formError.textContent = result.message || 'Something went wrong. Please try again.';
+        formError.style.display = 'block';
+        btn.disabled = false;
+        btnText.style.display = 'inline';
         btnSpinner.style.display = 'none';
       }
     } catch (err) {
-      formError.textContent    = 'Network error. Please check your connection and try again.';
-      formError.style.display  = 'block';
-      btn.disabled             = false;
-      btnText.style.display    = 'inline';
+      console.error("Form Submission Error:", err);
+      // Added a note about adblockers to the error message for better UX
+      formError.textContent = 'Network error. Please check your connection or disable your adblocker and try again.';
+      formError.style.display = 'block';
+      btn.disabled = false;
+      btnText.style.display = 'inline';
       btnSpinner.style.display = 'none';
     }
   }
 </script>
+
 </body>
 </html>
