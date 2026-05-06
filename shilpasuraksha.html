@@ -46,34 +46,21 @@
   }
   .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo {
-    width: 36px; 
-    height: 36px; 
-    border-radius: 10px;
+    width: 36px; height: 36px; border-radius: 10px;
     background: linear-gradient(135deg, var(--teal-light), var(--primary-light));
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    flex-shrink: 0; 
-    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; overflow: hidden;
   }
-  .nav-logo img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain;
-  }
+  .nav-logo img { width: 100%; height: 100%; object-fit: contain; }
   .nav-brand span { color: white; font-weight: 600; font-size: 1.05rem; letter-spacing: 0.01em; }
   .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
   .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 8px; font-size: 0.875rem; font-weight: 400; transition: all 0.2s; letter-spacing: 0.01em; }
   .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
-
-  /* Dropdown nav menu */
   .nav-links .dropdown { position: relative; }
   .nav-links .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #122035; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.5rem; min-width: 200px; z-index: 100; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .nav-links .dropdown:hover .dropdown-menu { display: block; }
   .nav-links .dropdown-menu a { display: block; padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: 6px; color: rgba(255,255,255,0.7); }
   .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.06); color: white; }
-
-  /* Mobile hamburger (shown below 900px) */
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .hamburger span { display: block; width: 22px; height: 2px; background: white; margin: 5px 0; border-radius: 2px; }
 
@@ -118,15 +105,9 @@
 
   /* ─── Literature Survey — 2×2 Grid ──────────────────────────────────────── */
   #project-scope { background: var(--bg-white); }
-  .lit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
+  .lit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
   .lit-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg); position: relative; overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
   .lit-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-  /* Top accent bar per card color */
   .lit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .lit-card.teal::before  { background: var(--teal); }
   .lit-card.blue::before  { background: var(--primary-light); }
@@ -135,11 +116,10 @@
   .lit-card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
   .lit-card p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
-  /* ─── Research Gap — 2×2 Grid ────────────────────────────────────────────── */
+  /* ─── Research Gap ───────────────────────────────────────────────────────── */
   .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
   .gap-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg); position: relative; overflow: hidden; transition: all 0.25s; }
   .gap-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-  /* Left accent bar per card color */
   .gap-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
   .gap-card.teal::before  { background: var(--teal); }
   .gap-card.blue::before  { background: var(--primary-light); }
@@ -149,7 +129,7 @@
   .gap-card p    { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
   .gap-icon      { font-size: 1.5rem; margin-bottom: 0.75rem; }
 
-  /* ─── Research Problem — Dark Background Section ─────────────────────────── */
+  /* ─── Research Problem ───────────────────────────────────────────────────── */
   #research-problem { background: var(--bg-dark); color: white; }
   #research-problem .section-title { color: white; }
   #research-problem .section-desc  { color: rgba(255,255,255,0.55); }
@@ -167,14 +147,13 @@
   .problem-card p  { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 0.75rem; }
   .problem-card p:last-child { margin-bottom: 0; }
 
-  /* ─── Research Objectives — 2×2 Grid ────────────────────────────────────── */
+  /* ─── Research Objectives ────────────────────────────────────────────────── */
   .obj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
   .obj-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg-white); position: relative; overflow: hidden; transition: all 0.25s; }
   .obj-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
   .obj-num-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: var(--primary); color: white; font-size: 0.82rem; font-weight: 700; font-family: var(--font-mono); margin-bottom: 1rem; }
   .obj-card h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; }
   .obj-card p  { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
-  /* Bottom accent bar revealed on hover */
   .obj-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; opacity: 0; transition: opacity 0.25s; }
   .obj-card:hover::after { opacity: 1; }
   .obj-card:nth-child(1)::after { background: var(--teal); }
@@ -182,13 +161,11 @@
   .obj-card:nth-child(3)::after { background: var(--accent); }
   .obj-card:nth-child(4)::after { background: var(--accent-warm); }
 
-  /* ─── Methodology — Dark Background Section ──────────────────────────────── */
+  /* ─── Methodology ────────────────────────────────────────────────────────── */
   #methodology { background: var(--bg-dark); color: white; }
   #methodology .section-title { color: white; }
   #methodology .section-desc  { color: rgba(255,255,255,0.55); }
   #methodology .section-tag   { color: var(--teal-light); }
-
-  /* 4-step pipeline with connecting line */
   .arch-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; position: relative; }
   .arch-flow::before { content: ''; position: absolute; top: 56px; left: calc(12.5% + 1rem); right: calc(12.5% + 1rem); height: 2px; background: linear-gradient(90deg, var(--teal) 0%, var(--primary-light) 100%); z-index: 0; }
   .arch-step { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 1.5rem 1rem; text-align: center; position: relative; z-index: 1; transition: background 0.25s; }
@@ -196,8 +173,6 @@
   .arch-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(30,200,160,0.15); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 22px; }
   .arch-step h4 { font-size: 0.9rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
   .arch-step p  { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-
-  /* 4 component detail cards */
   .comp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
   .comp-card { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 1.75rem; position: relative; overflow: hidden; transition: border-color 0.25s; }
   .comp-card:hover { border-color: rgba(30,200,160,0.3); }
@@ -213,7 +188,6 @@
   .tech-chip { display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px 8px 10px; font-size: 0.87rem; font-weight: 500; color: var(--text); transition: all 0.2s; }
   .tech-chip:hover { border-color: var(--teal); box-shadow: 0 0 0 2px rgba(15,158,128,0.12); }
   .tech-chip .dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
-  /* Per-technology dot colors */
   .dot-react  { background: #20B2AA; }
   .dot-python { background: #3776AB; }
   .dot-fastapi{ background: #009688; }
@@ -228,7 +202,6 @@
   /* ─── Milestones Timeline ────────────────────────────────────────────────── */
   #milestones { background: var(--bg); }
   .timeline { position: relative; margin-top: 3.5rem; padding-left: 2rem; }
-  /* Vertical gradient line */
   .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--teal), var(--primary-light), transparent); }
   .milestone-item { position: relative; margin-bottom: 2.5rem; padding-left: 2.5rem; }
   .milestone-dot { position: absolute; left: -2.25rem; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--teal); background: var(--bg-white); }
@@ -240,14 +213,10 @@
   .milestone-meta { display: flex; gap: 1rem; margin-top: 0.75rem; flex-wrap: wrap; }
   .m-tag { font-size: 0.75rem; font-weight: 500; padding: 3px 10px; border-radius: 6px; background: rgba(15,158,128,0.1); color: var(--teal); }
 
-  /* ─── Documents — 4-Column Grid ─────────────────────────────────────────── */
+  /* ─── Documents ──────────────────────────────────────────────────────────── */
   #downloads { background: var(--bg-white); }
-  .doc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 1rem;
-    margin-top: 2.5rem;
-  }
+  .doc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  .checklists-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
   .doc-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg); display: flex; flex-direction: column; gap: 0.5rem; transition: all 0.2s; }
   .doc-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow-sm); }
   .doc-icon { font-size: 28px; margin-bottom: 0.25rem; }
@@ -279,19 +248,84 @@
   #about .section-title { color: white; }
   #about .section-desc  { color: rgba(255,255,255,0.55); }
   #about .section-tag   { color: var(--teal-light); }
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .member-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 1.75rem 1.25rem; text-align: center; transition: all 0.25s; }
+
+  /* ── Supervisor cards ── */
+  .supervisor-section { margin-bottom: 3.5rem; }
+  .supervisor-section-title {
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--teal-light); margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .supervisor-section-title::after {
+    content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08);
+  }
+  .supervisor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .supervisor-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: var(--radius-lg); padding: 1.75rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 1.25rem; transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .supervisor-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--primary-light));
+  }
+  .supervisor-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(30,200,160,0.2); }
+  .supervisor-avatar {
+    width: 76px; height: 76px; border-radius: 50%; flex-shrink: 0;
+    overflow: hidden; border: 2px solid rgba(30,200,160,0.3);
+    background: linear-gradient(135deg, var(--teal), var(--primary));
+  }
+  .supervisor-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .supervisor-info { flex: 1; }
+  .supervisor-badge {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--teal-light); margin-bottom: 0.3rem;
+  }
+  .supervisor-name { font-size: 1.05rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
+  .supervisor-dept { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 0.75rem; }
+  .supervisor-email {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .supervisor-email:hover { color: var(--teal-light); }
+
+  /* ── Team member cards ── */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1.5rem; margin-top: 1rem; }
+  .member-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg); padding: 1.75rem 1.25rem; text-align: center; transition: all 0.25s;
+  }
   .member-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(30,200,160,0.2); }
-  .member-avatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; font-family: var(--font-display); color: white; }
+
+  /* Photo-based avatar */
+  .member-avatar {
+    width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem;
+    overflow: hidden; border: 2px solid rgba(30,200,160,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; font-weight: 700; font-family: var(--font-display); color: white;
+  }
+  .member-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
   .av-1 { background: linear-gradient(135deg, #1E8449, #27AE60); }
   .av-2 { background: linear-gradient(135deg, #1A5276, #2E86C1); }
   .av-3 { background: linear-gradient(135deg, #6C3483, #8E44AD); }
   .av-4 { background: linear-gradient(135deg, #784212, #CA6F1E); }
+
   .member-name  { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
   .member-role  { font-size: 0.8rem; color: var(--teal-light); margin-bottom: 0.5rem; font-weight: 500; }
-  .member-comp  { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+  .member-comp  { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 0.75rem; }
+  .member-desc  { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .member-links { display: flex; flex-direction: column; gap: 0.35rem; align-items: center; }
   .member-email { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; display: block; transition: color 0.2s; }
   .member-email:hover { color: var(--teal-light); }
+  .member-linkedin {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.78rem; font-weight: 500; color: #5aaaff;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .member-linkedin:hover { color: #78c1ff; }
+  .member-linkedin svg { width: 13px; height: 13px; fill: currentColor; }
 
   /* ─── Contact ────────────────────────────────────────────────────────────── */
   #contact { background: var(--bg); }
@@ -301,8 +335,6 @@
   .c-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--bg-white); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .c-text p    { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.1rem; }
   .c-text a, .c-text span { font-size: 0.9rem; font-weight: 500; color: var(--text); text-decoration: none; }
-
-  /* Contact form */
   .contact-form { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
   .contact-form h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text); }
   .form-group { margin-bottom: 1.25rem; }
@@ -327,31 +359,32 @@
   footer { background: var(--bg-dark2); color: rgba(255,255,255,0.45); padding: 2rem; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.04); }
   footer a { color: var(--teal-light); text-decoration: none; }
 
-  /* ─── Scroll Fade-In Animation ───────────────────────────────────────────── */
+  /* ─── Scroll Fade-In ─────────────────────────────────────────────────────── */
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
   .fade-in.visible { opacity: 1; transform: none; }
 
-  /* ─── Responsive Breakpoints ─────────────────────────────────────────────── */
+  /* ─── Responsive ─────────────────────────────────────────────────────────── */
   @media (max-width: 900px) {
     .hero-content { grid-template-columns: 1fr; gap: 3rem; }
     .hero-stats { grid-template-columns: repeat(3,1fr); }
     .arch-flow { grid-template-columns: repeat(2,1fr); }
-    .arch-flow::before { display: none; } /* hide connector line on mobile */
+    .arch-flow::before { display: none; }
     .comp-grid, .problem-grid, .gap-grid, .obj-grid { grid-template-columns: 1fr; }
     .contact-wrap { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hamburger { display: block; }
-    /* Collapse to 2 cols on tablet */
     .lit-grid  { grid-template-columns: 1fr 1fr; }
-    .doc-grid  { grid-template-columns: repeat(2, 1fr); }
+    .doc-grid, .checklists-grid  { grid-template-columns: repeat(2, 1fr); }
     .pres-grid { grid-template-columns: repeat(2, 1fr); }
+    .supervisor-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     section { padding: 4rem 1.25rem; }
     .hero-content { padding: 3rem 1.25rem; }
     .hero-stats { grid-template-columns: repeat(3,1fr); gap: 0.5rem; }
-    /* Single column on small phones */
-    .lit-grid, .doc-grid, .pres-grid { grid-template-columns: 1fr; }
+    .lit-grid, .doc-grid, .checklists-grid, .pres-grid { grid-template-columns: 1fr; }
+    .supervisor-card { flex-direction: column; align-items: center; text-align: center; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -361,7 +394,7 @@
 <nav>
   <a class="nav-brand" href="#home">
     <div class="nav-logo">
-      <img src="../../ShilpaSuraksha_LOGO.png" alt="ShilpaSuraksha Logo" class="logo-image">
+      <img src="../../ShilpaSuraksha_LOGO.png" alt="ShilpaSuraksha Logo">
     </div>
     <span>ShilpaSuraksha</span>
   </a>
@@ -384,13 +417,13 @@
       <div class="dropdown-menu">
         <a href="#downloads">Documents</a>
         <a href="#presentations">Presentations</a>
+        <a href="#checklists">Checklists</a>
       </div>
     </li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 
-  <!-- Mobile toggle: toggles flex display on nav-links -->
   <button class="hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
     <span></span><span></span><span></span>
   </button>
@@ -429,7 +462,6 @@
       </div>
     </div>
 
-    <!-- 4 component cards stacked vertically on the right -->
     <div class="hero-visual">
       <div class="hero-card">
         <div class="hero-card-icon ic-teal">🎯</div>
@@ -464,7 +496,6 @@
       Academic risk identification for primary students remains a largely reactive, manual process in Sri Lanka. Our research synthesizes global findings on early warning systems, behavioral analytics, and adaptive learning to address this critical gap.
     </p>
 
-    <!-- 2×2 grid: 4 literature themes -->
     <div class="lit-grid">
       <div class="lit-card teal fade-in">
         <h3>Early Warning Systems in Education</h3>
@@ -476,7 +507,7 @@
       </div>
       <div class="lit-card amber fade-in">
         <h3>Personalized Learning Paths</h3>
-        <p>Adaptive learning systems that tailor educational content to individual student weaknesses show significantly better outcomes than generalized curricula. NLP-driven recommendation engines and knowledge graphs have been used successfully in EdTech platforms globally.</p>
+        <p>Adaptive learning systems tailored to individual weaknesses demonstrate superior outcomes over static curricula. By utilizing a Hybrid AI architecture—combining Natural Language Processing (NLP) and Graph Neural Networks (GNN) for prerequisite mapping—this approach overcomes the limitations of traditional Collaborative Filtering. Integrated with Retrieval-Augmented Generation (RAG), the system delivers personalized, factually grounded, and culturally relevant educational interventions.</p>
       </div>
       <div class="lit-card red fade-in">
         <h3>Student Clustering & Dashboards</h3>
@@ -484,13 +515,11 @@
       </div>
     </div>
 
-    <!-- ─── Research Gap subsection ─────────────────────────────────────── -->
     <hr class="divider" id="research-gap">
     <span class="section-tag">Research Gap</span>
     <h2 class="section-title">What's Missing</h2>
     <p class="section-desc">Existing solutions fail to address the multi-dimensional nature of academic risk in Sri Lankan primary school contexts.</p>
 
-    <!-- 2×2 gap cards -->
     <div class="gap-grid">
       <div class="gap-card teal fade-in">
         <div class="gap-icon">🔗</div>
@@ -500,7 +529,7 @@
       <div class="gap-card blue fade-in">
         <div class="gap-icon">🌏</div>
         <h3>Lack of Local Context</h3>
-        <p>International EdTech solutions are not adapted for the Sri Lankan primary school curriculum, grading structures, or Sinhala/Tamil language contexts. There is an acute absence of locally-trained ML models for Sri Lankan student behavioral data.</p>
+        <p>International EdTech solutions are not adapted for the Sri Lankan primary school curriculum, grading structures, or Sinhala language contexts. There is an acute absence of locally-trained ML models for Sri Lankan student behavioral data.</p>
       </div>
       <div class="gap-card amber fade-in">
         <div class="gap-icon">⏱️</div>
@@ -536,7 +565,7 @@
         <div class="problem-card-icon blue-ic">🛡️</div>
         <h3>Proposed Solution — ShilpaSuraksha</h3>
         <p>ShilpaSuraksha (Shield of Protection) is a full-stack web platform that integrates four AI-powered modules under a unified teacher interface. School administrators manage schools and teachers; teachers manage students, feed academic and behavioral data, and receive AI-generated risk flags and personalized learning recommendations.</p>
-        <p>The system uses trained ML/DL models for academic risk prediction and behavioral/emotion analysis, an intelligent recommendation engine for learning path generation, and a real-time dashboard for student progress visualization and intervention tracking.</p>
+        <p>The system uses trained ML models for academic risk prediction and behavioral/emotion analysis, an intelligent recommendation engine for learning path generation, and a real-time dashboard for student progress visualization and intervention tracking.</p>
       </div>
     </div>
   </div>
@@ -583,7 +612,6 @@
       ShilpaSuraksha follows a layered architecture with a React frontend, FastAPI backend, PostgreSQL database, and trained ML/DL models served via dedicated model APIs.
     </p>
 
-    <!-- 4-step data pipeline with horizontal connector line (hidden on mobile) -->
     <div class="arch-flow">
       <div class="arch-step fade-in">
         <div class="arch-icon">📥</div>
@@ -607,7 +635,6 @@
       </div>
     </div>
 
-    <!-- 4 component deep-dive cards -->
     <div class="comp-grid" style="margin-top: 4rem;">
       <div class="comp-card">
         <div class="comp-label">Component 01</div>
@@ -645,40 +672,42 @@
     <p class="section-desc">ShilpaSuraksha is built on a modern, production-grade full-stack architecture combining React, FastAPI, PostgreSQL, and machine learning frameworks.</p>
 
     <div class="tech-grid">
-      <div class="tech-chip"><div class="dot dot-react">⚛</div> React.js (Vite)</div>
-      <div class="tech-chip"><div class="dot dot-python">🐍</div> Python 3.11</div>
-      <div class="tech-chip"><div class="dot dot-fastapi">⚡</div> FastAPI</div>
-      <div class="tech-chip"><div class="dot dot-psql">🐘</div> PostgreSQL</div>
-      <div class="tech-chip"><div class="dot dot-sk">🔬</div> scikit-learn</div>
-      <div class="tech-chip"><div class="dot dot-tf">🔥</div> TensorFlow / Keras</div>
-      <div class="tech-chip"><div class="dot dot-jwt">🔑</div> JWT Authentication</div>
-      <div class="tech-chip"><div class="dot dot-vite">⚡</div> Vite Build Tool</div>
-      <div class="tech-chip"><div class="dot dot-colab">📓</div> Google Colab</div>
-      <div class="tech-chip"><div class="dot dot-figma">🎨</div> Figma (UI/UX Design)</div>
-      <div class="tech-chip"><div class="dot dot-react">📦</div> Alembic (DB Migrations)</div>
-      <div class="tech-chip"><div class="dot dot-psql">🛡️</div> CORS Middleware</div>
+      <div class="tech-chip"><div class="dot dot-react">⚛</div> React.js (Frontend)</div>
+      <div class="tech-chip"><div class="dot dot-node">🟩</div> Node.js & Express (Backend)</div>
+      <div class="tech-chip"><div class="dot dot-psql">🐘</div> PostgreSQL (Database)</div>
+      <div class="tech-chip"><div class="dot dot-gemini">✨</div> Google Gemini (LLM)</div>
+      <div class="tech-chip"><div class="dot dot-rag">🔍</div> RAG Architecture</div>
+      <div class="tech-chip"><div class="dot dot-nlp">📝</div> Custom NLP (TF-IDF)</div>
+      <div class="tech-chip"><div class="dot dot-graph">🕸️</div> Knowledge Graph (GNN)</div>
+      <div class="tech-chip"><div class="dot dot-bayes">📈</div> Bayesian Analytics</div>
+      <div class="tech-chip"><div class="dot dot-ml">🤖</div> ML Clustering (K-Means/Hierarchical)</div>
+      <div class="tech-chip"><div class="dot dot-rbac">🔐</div> Role-Based Access Control (RBAC)</div>
     </div>
 
-    <!-- Architecture layer breakdown -->
-    <div style="margin-top: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem;">
+<div style="margin-top: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem;">
       <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text);">System Architecture Overview</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem;">
+        
         <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); border: 1px solid var(--border);">
           <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.4rem; font-weight: 600;">Frontend</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">React.js with Vite, component-based architecture with Admin, Teacher, and Public page routes.</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">React.js based dashboard providing intuitive interfaces for teachers and administrators to view risk analytics and intervention roadmaps.</p>
         </div>
+        
         <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); border: 1px solid var(--border);">
           <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary-light); margin-bottom: 0.4rem; font-weight: 600;">Backend API</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">FastAPI with routers for auth, students, teachers, schools, interventions, and ML model endpoints.</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Node.js & Express RESTful APIs handling role-based access control (RBAC), data processing, and routing to AI/ML services.</p>
         </div>
+        
         <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); border: 1px solid var(--border);">
-          <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-warm); margin-bottom: 0.4rem; font-weight: 600;">ML Models</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Trained classification model for academic risk; CNN-based deep learning model for behavioral analysis from image data.</p>
+          <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-warm); margin-bottom: 0.4rem; font-weight: 600;">Hybrid AI & ML Layer</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Integrates Graph Neural Networks (GNN), custom NLP (TF-IDF), Google Gemini via RAG architecture, and Bayesian probabilistic forecasting.</p>
         </div>
+        
         <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); border: 1px solid var(--border);">
           <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 600;">Database</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">PostgreSQL with Alembic migrations. Models for users, schools, teachers, students, assessments, attendance, behavioral data, and interventions.</p>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">PostgreSQL managing student records, attendance, behavioral indicators, historical assessment data, and localized curriculum resources.</p>
         </div>
+
       </div>
     </div>
   </div>
@@ -835,7 +864,6 @@
     <h2 class="section-title">Documents</h2>
     <p class="section-desc">All research documents produced throughout the project lifecycle. Links are updated as submissions are finalized.</p>
 
-    <!-- 4 columns × 2 rows = 8 document cards -->
     <div class="doc-grid">
       <div class="doc-card">
         <div class="doc-icon">📋</div>
@@ -877,16 +905,15 @@
         <h3>Final Thesis — Individual</h3>
         <p>Individual thesis from each team member detailing their specific component contributions.</p>
         <span class="doc-status status-pending">Pending</span>
-        <a href="https://drive.google.com/drive/folders/1F6_DZ893yxCmn4Ka0esAkRaNU98UmpIi?usp=drive_link" class="doc-link">Download ↗</a>
+        <a href="https://drive.google.com/drive/folders/1F6_DZ893yxCmn4Ka0esAkRaNU98UmpIi?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
       </div>
       <div class="doc-card">
         <div class="doc-icon">📰</div>
-        <h3>Research Papers</h3>
+        <h3>Research Paper</h3>
         <p>Academic paper documenting ShilpaSuraksha's research contributions, model evaluations, and findings.</p>
         <span class="doc-status status-pending">In Progress</span>
         <a href="https://drive.google.com/drive/folders/1b_31RnKpiGo-MXa2ud3ADpSkpFFJJZTl?usp=drive_link" class="doc-link" style="color: var(--text-light); pointer-events: none;" target="_blank">Link Pending</a>
       </div>
-      <!-- Placeholder card to complete the 4×2 layout -->
       <div class="doc-card" style="opacity: 0.45; pointer-events: none;">
         <div class="doc-icon">📑</div>
         <h3>Publication Evidence</h3>
@@ -943,7 +970,7 @@
         <div class="pres-info">
           <h3>PP2 Demo Video</h3>
           <p>Live demonstration from Progress Presentation II — full integrated platform walkthrough with all four AI components.</p>
-          <a href="https://drive.google.com/file/d/1XO2SQwX6h75x17d_XPVozgXPW_C3MMwD/view?usp=drive_link" class="pres-link"  target="_blank">Watch Demo ↗</a>
+          <a href="https://drive.google.com/file/d/1XO2SQwX6h75x17d_XPVozgXPW_C3MMwD/view?usp=drive_link" class="pres-link" target="_blank">Watch Demo ↗</a>
         </div>
       </div>
       <div class="pres-card">
@@ -958,46 +985,172 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════ CHECKLISTS ════ -->
+<section id="checklists" style="background: var(--bg-white);">
+  <div class="container">
+    <span class="section-tag">Assessments</span>
+    <h2 class="section-title">Project Checklists</h2>
+    <p class="section-desc">Evaluation checklists and assessment criteria documents submitted across the project timeline.</p>
+
+    <div class="checklists-grid">
+      <div class="doc-card fade-in">
+        <div class="doc-icon">☑️</div>
+        <h3>Project Checklist 1</h3>
+        <p>Initial project evaluation, charter assessment, and milestone 1 criteria.</p>
+        <span class="doc-status status-done">Submitted</span>
+        <a href="https://drive.google.com/drive/folders/1NcDGA9n20PCPavsBZN_4M4EVLDwJPMVC?usp=drive_link" class="doc-link" target="_blank">View Folder ↗</a>
+      </div>
+      <div class="doc-card fade-in">
+        <div class="doc-icon">☑️</div>
+        <h3>Project Checklist 2</h3>
+        <p>Mid-point progress evaluation, system demonstration, and milestone 2 criteria.</p>
+        <span class="doc-status status-done">Submitted</span>
+        <a href="https://drive.google.com/drive/folders/189uKgS5ajrOfNvqbPUITqKv_n_IKi3iM?usp=drive_link" class="doc-link" target="_blank">View Folder ↗</a>
+      </div>
+      <div class="doc-card fade-in">
+        <div class="doc-icon">☑️</div>
+        <h3>Project Checklist 3</h3>
+        <p>Final project evaluation, full system completion, and milestone 3 criteria.</p>
+        <span class="doc-status status-done">Submitted</span>
+        <a href="https://drive.google.com/drive/folders/1BCAN-thvrrjMgwxBJz8biQIXjvfs5EIw?usp=drive_link" class="doc-link" target="_blank">View Folder ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════════════════════════════════════════ ABOUT ════ -->
 <section id="about">
   <div class="container">
     <span class="section-tag">About Us</span>
     <h2 class="section-title">The Research Team</h2>
-    <p class="section-desc">ShilpaSuraksha is a collaborative final-year research project by four undergraduate students at Sri Lanka Institute of Information Technology (SLIIT).</p>
+    <p class="section-desc">ShilpaSuraksha is a collaborative final-year research project by four undergraduate students at Sri Lanka Institute of Information Technology (SLIIT), guided by experienced faculty supervisors.</p>
+
+    <!-- ── Supervisors ── -->
+    <div class="supervisor-section" style="margin-top: 3rem;">
+      <div class="supervisor-section-title">Project Supervisors</div>
+      <div class="supervisor-grid">
+
+        <!-- Supervisor -->
+        <div class="supervisor-card fade-in">
+          <div class="supervisor-avatar">
+            <img src="Kaushalya Madam.jpeg" alt="Ms. Kaushalya Rajapakshe"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1A5276,#2E86C1)'; this.parentElement.innerHTML='KR';">
+          </div>
+          <div class="supervisor-info">
+            <div class="supervisor-badge">Supervisor</div>
+            <div class="supervisor-name">Ms. Kaushalya Rajapakshe</div>
+            <div class="supervisor-dept">Faculty of Computing · SLIIT</div>
+            <a href="mailto:kaushalya.r@sliit.lk" class="supervisor-email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+              kaushalya.r@sliit.lk
+            </a>
+          </div>
+        </div>
+
+        <!-- Co-Supervisor -->
+        <div class="supervisor-card fade-in">
+          <div class="supervisor-avatar">
+            <img src="Bimal Sir.jpeg" alt="Mr. Bimal Gunapala"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#1E8449,#27AE60)'; this.parentElement.innerHTML='BG';">
+          </div>
+          <div class="supervisor-info">
+            <div class="supervisor-badge">Co-Supervisor</div>
+            <div class="supervisor-name">Mr. Bimal Gunapala</div>
+            <div class="supervisor-dept">Faculty of Computing · SLIIT</div>
+            <a href="mailto:bimal.g@sliit.lk" class="supervisor-email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+              bimal.g@sliit.lk
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Team Members ── -->
+    <div class="supervisor-section-title" style="margin-top: 3rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--teal-light); display: flex; align-items: center; gap: 0.75rem;">
+      Research Group
+      <span style="flex:1; height:1px; background: rgba(255,255,255,0.08);"></span>
+    </div>
 
     <div class="team-grid">
+
+      <!-- Iresh -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-1">IR</div>
+        <div class="member-avatar av-1">
+          <img src="Iresh.jpeg" alt="Iresh"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='IR';">
+        </div>
         <div class="member-name">Iresh</div>
         <div class="member-role">Component 01 Lead</div>
         <div class="member-comp">Early Warning System</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Academic data entry, attendance/marks analysis, ML risk classification model training and integration.</p>
-        <a href="mailto:iresheranga2020al@gmail.com" class="member-email">iresheranga2020al@gmail.com</a>
+        <p class="member-desc">Academic data entry, attendance/marks analysis, ML risk classification model training and integration.</p>
+        <div class="member-links">
+          <a href="mailto:iresheranga2020al@gmail.com" class="member-email">iresheranga2020al@gmail.com</a>
+          <a href="https://www.linkedin.com/in/iresh-eranga" target="_blank" class="member-linkedin">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
+      <!-- Shenori -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-2">SH</div>
+        <div class="member-avatar av-2">
+          <img src="Shenori.jpg" alt="Shenori"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='SH';">
+        </div>
         <div class="member-name">Shenori</div>
         <div class="member-role">Component 02 Lead</div>
         <div class="member-comp">Emotion & Behavioral Analysis</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Hand drawing and handwriting dataset collection, CNN model design, behavioral classification and interface integration.</p>
-        <a href="mailto:shenoriweerakoon@gmail.com" class="member-email">shenoriweerakoon@gmail.com</a>
+        <p class="member-desc">Hand drawing and handwriting dataset collection, CNN model design, behavioral classification and interface integration.</p>
+        <div class="member-links">
+          <a href="mailto:shenoriweerakoon@gmail.com" class="member-email">shenoriweerakoon@gmail.com</a>
+          <a href="https://www.linkedin.com/in/shenori-weerakoon" target="_blank" class="member-linkedin">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
+      <!-- Kavini -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-3">KV</div>
+        <div class="member-avatar av-3">
+          <img src="Kavini.jpg" alt="Kavini"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='KV';">
+        </div>
         <div class="member-name">Kavini</div>
         <div class="member-role">Component 03 Lead</div>
         <div class="member-comp">Intelligent Recommendation System</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">At-risk student display, learning path generation engine, activity/task recommendation, and progress tracking interface.</p>
-        <a href="mailto:kaviniwickramasooriya@gmail.com" class="member-email">kaviniwickramasooriya@gmail.com</a>
+        <p class="member-desc">At-risk student display, learning path generation engine, activity/task recommendation, and progress tracking interface.</p>
+        <div class="member-links">
+          <a href="mailto:kaviniwickramasooriya@gmail.com" class="member-email">kaviniwickramasooriya@gmail.com</a>
+          <a href="https://lk.linkedin.com/in/kavini-wickramasooriya-937a70179" target="_blank" class="member-linkedin">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
+      <!-- Sahan -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-4">SA</div>
+        <div class="member-avatar av-4">
+          <img src="Sahan.jpg" alt="Sahan"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='SA';">
+        </div>
         <div class="member-name">Sahan</div>
         <div class="member-role">Component 04 Lead</div>
         <div class="member-comp">Dashboard & Intervention Orchestrator</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Student clustering algorithms, interactive analytics dashboard, intervention panel design, and outcome tracking.</p>
-        <a href="mailto:sahanupendra@gmail.com" class="member-email">sahanupendra@gmail.com</a>
+        <p class="member-desc">Student clustering algorithms, interactive analytics dashboard, intervention panel design, and outcome tracking.</p>
+        <div class="member-links">
+          <a href="mailto:bzsahanupendra@gmail.com" class="member-email">bzsahanupendra@gmail.com</a>
+          <a href="https://www.linkedin.com/in/sahan-upendra" target="_blank" class="member-linkedin">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 ２２．２７１V１．７２９C２４．０．７７４ ２３．２ ０ ２２．２２２ ０h．００３z"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
     </div>
 
     <!-- Project metadata strip -->
@@ -1069,7 +1222,6 @@
         </div>
       </div>
 
-      <!-- Contact form — submits via Web3Forms API -->
       <div class="contact-form">
         <h3>Send a Message</h3>
         <div class="form-error" id="formError">Something went wrong. Please try again.</div>
@@ -1088,7 +1240,6 @@
           </div>
           <div class="form-group">
             <label for="subject">Subject</label>
-            <!-- Updates hidden subject field so email subject reflects selection -->
             <select id="subject" name="subject_type" onchange="document.getElementById('hiddenSubject').value = 'ShilpaSuraksha – ' + this.options[this.selectedIndex].text">
               <option>General Inquiry</option>
               <option>Research Collaboration</option>
@@ -1124,19 +1275,19 @@
 </footer>
 
 <script>
-  // ─── Scroll-triggered fade-in for .fade-in elements ──────────────────────
+  // ─── Scroll fade-in ───────────────────────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // ─── Deepen nav background slightly on scroll ─────────────────────────────
+  // ─── Nav scroll depth ─────────────────────────────────────────────────────
   window.addEventListener('scroll', () => {
     document.querySelector('nav').style.background =
       window.scrollY > 60 ? 'rgba(13,27,42,0.98)' : 'rgba(13,27,42,0.96)';
   });
 
-  // ─── Contact form submission via Web3Forms ────────────────────────────────
+  // ─── Contact form ─────────────────────────────────────────────────────────
   async function handleSubmit(e) {
     e.preventDefault();
     const btn        = document.getElementById('submitBtn');
@@ -1145,42 +1296,33 @@
     const formError  = document.getElementById('formError');
 
     formError.style.display = 'none';
-    btn.disabled   = true;
+    btn.disabled            = true;
     btnText.style.display   = 'none';
     btnSpinner.style.display= 'inline';
 
-    // FIX: Send raw FormData instead of converting to JSON. 
-    // This is much more reliable for Web3Forms and avoids CORS preflight issues.
     const formData = new FormData(e.target);
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        // Note: Do not set 'Content-Type' when sending FormData. 
-        // The browser automatically sets it to 'multipart/form-data' with the correct boundaries.
-        body: formData
-      });
-      
+      const res    = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
       const result = await res.json();
 
       if (result.success) {
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
-        formError.textContent = result.message || 'Something went wrong. Please try again.';
+        formError.textContent   = result.message || 'Something went wrong. Please try again.';
         formError.style.display = 'block';
-        btn.disabled = false;
-        btnText.style.display = 'inline';
-        btnSpinner.style.display = 'none';
+        btn.disabled            = false;
+        btnText.style.display   = 'inline';
+        btnSpinner.style.display= 'none';
       }
     } catch (err) {
-      console.error("Form Submission Error:", err);
-      // Added a note about adblockers to the error message for better UX
-      formError.textContent = 'Network error. Please check your connection or disable your adblocker and try again.';
+      console.error('Form Submission Error:', err);
+      formError.textContent   = 'Network error. Please check your connection or disable your adblocker and try again.';
       formError.style.display = 'block';
-      btn.disabled = false;
-      btnText.style.display = 'inline';
-      btnSpinner.style.display = 'none';
+      btn.disabled            = false;
+      btnText.style.display   = 'inline';
+      btnSpinner.style.display= 'none';
     }
   }
 </script>
