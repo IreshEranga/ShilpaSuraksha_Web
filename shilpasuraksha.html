@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ShilpaSuraksha – Academic Risk Prediction System</title>
-<link rel="icon" type="image/png" href="../../ShilpaSuraksha_LOGO.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* ─── Design Tokens ──────────────────────────────────────────────────────── */
   :root {
     --primary: #1B4F72;
     --primary-light: #2E86C1;
@@ -32,69 +30,163 @@
     --font-mono: 'DM Mono', monospace;
   }
 
-  /* ─── Reset & Base ───────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-  /* ─── Navigation ─────────────────────────────────────────────────────────── */
+  /* ─── NAV ─────────────────────────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-    background: rgba(13,27,42,0.96); backdrop-filter: blur(12px);
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
   }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
   .nav-logo {
-    width: 36px; 
-    height: 36px; 
-    border-radius: 10px;
+    width: 36px; height: 36px; border-radius: 10px;
     background: linear-gradient(135deg, var(--teal-light), var(--primary-light));
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    flex-shrink: 0; 
-    overflow: hidden;
-  }
-  .nav-logo img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: white;
+    font-family: var(--font-display);
   }
   .nav-brand span { color: white; font-weight: 600; font-size: 1.05rem; letter-spacing: 0.01em; }
-  .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 8px; font-size: 0.875rem; font-weight: 400; transition: all 0.2s; letter-spacing: 0.01em; }
+  .nav-links {
+    display: flex; align-items: center; gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
   .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
-
-  /* Dropdown nav menu */
   .nav-links .dropdown { position: relative; }
-  .nav-links .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #122035; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.5rem; min-width: 200px; z-index: 100; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+  .nav-links .dropdown-menu {
+    display: none;
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #122035; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 0.5rem;
+    min-width: 220px; z-index: 100;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
   .nav-links .dropdown:hover .dropdown-menu { display: block; }
-  .nav-links .dropdown-menu a { display: block; padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: 6px; color: rgba(255,255,255,0.7); }
+  .nav-links .dropdown-menu a {
+    display: block; padding: 0.5rem 1rem;
+    font-size: 0.85rem; border-radius: 6px;
+    color: rgba(255,255,255,0.7);
+  }
   .nav-links .dropdown-menu a:hover { background: rgba(255,255,255,0.06); color: white; }
 
-  /* Mobile hamburger (shown below 900px) */
+  /* Checklist dropdown special styling */
+  .checklist-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.6rem 1rem !important;
+    border-radius: 6px;
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 0.85rem !important;
+    transition: background 0.2s !important;
+  }
+  .checklist-item:hover { background: rgba(255,255,255,0.06) !important; color: white !important; }
+  .checklist-badge {
+    width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+  }
+  .cb-1 { background: var(--teal); }
+  .cb-2 { background: var(--primary-light); }
+  .cb-3 { background: var(--accent-warm); }
+  .checklist-sep {
+    border: none; border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 0.3rem 0.5rem;
+  }
+
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .hamburger span { display: block; width: 22px; height: 2px; background: white; margin: 5px 0; border-radius: 2px; }
 
-  /* ─── Hero Section ───────────────────────────────────────────────────────── */
-  #home { min-height: 100vh; background: var(--bg-dark); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 64px; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(14,158,128,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,134,193,0.1) 0%, transparent 60%); }
-  .hero-grid { position: absolute; inset: 0; opacity: 0.03; background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 40px 40px; }
-  .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(30,200,160,0.12); border: 1px solid rgba(30,200,160,0.25); color: var(--teal-light); padding: 6px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  /* ─── HERO ────────────────────────────────────────────────────────────────── */
+  #home {
+    min-height: 100vh;
+    background: var(--bg-dark);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding-top: 64px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(14,158,128,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,134,193,0.1) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 5rem 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(30,200,160,0.12); border: 1px solid rgba(30,200,160,0.25);
+    color: var(--teal-light); padding: 6px 16px; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 500; margin-bottom: 1.5rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
   .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal-light); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-  .hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4vw, 3.6rem); color: white; line-height: 1.15; margin-bottom: 1.25rem; font-weight: 700; }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: white; line-height: 1.15;
+    margin-bottom: 1.25rem; font-weight: 700;
+  }
   .hero-title .highlight { color: var(--teal-light); }
-  .hero-subtitle { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem; line-height: 1.7;
+    margin-bottom: 2.5rem; max-width: 480px;
+  }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--teal); color: white; text-decoration: none; padding: 0.85rem 2rem; border-radius: 10px; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary {
+    background: var(--teal); color: white; text-decoration: none; padding: 0.85rem 2rem;
+    border-radius: 10px; font-weight: 500; font-size: 0.95rem;
+    transition: all 0.2s; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
   .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); text-decoration: none; padding: 0.85rem 2rem; border-radius: 10px; font-weight: 500; font-size: 0.95rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline {
+    background: transparent; color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-decoration: none; padding: 0.85rem 2rem;
+    border-radius: 10px; font-weight: 500; font-size: 0.95rem;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
   .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); }
+
   .hero-visual { display: flex; flex-direction: column; gap: 1rem; }
-  .hero-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 1.25rem 1.5rem; transition: transform 0.3s; }
+  .hero-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem; transition: transform 0.3s;
+  }
   .hero-card:hover { transform: translateX(4px); }
   .hero-card-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
   .hero-card-value { font-size: 1.1rem; color: white; font-weight: 500; }
@@ -103,165 +195,222 @@
   .ic-blue { background: rgba(46,134,193,0.15); }
   .ic-amber { background: rgba(244,162,97,0.15); }
   .ic-red { background: rgba(231,111,81,0.15); }
+
   .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 3rem; }
   .stat-item { text-align: center; }
   .stat-num { font-family: var(--font-display); font-size: 2.2rem; color: var(--teal-light); font-weight: 700; }
   .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
 
-  /* ─── Shared Section Utilities ───────────────────────────────────────────── */
+  /* ─── SECTIONS ────────────────────────────────────────────────────────────── */
   section { padding: 6rem 2rem; }
   .container { max-width: 1100px; margin: 0 auto; }
-  .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--teal); margin-bottom: 0.75rem; }
-  .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--text); line-height: 1.2; margin-bottom: 1rem; }
-  .section-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 640px; line-height: 1.8; }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
-
-  /* ─── Literature Survey — 2×2 Grid ──────────────────────────────────────── */
-  #project-scope { background: var(--bg-white); }
-  .lit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 1.5rem;
-    margin-top: 3rem;
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--teal); margin-bottom: 0.75rem;
   }
-  .lit-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg); position: relative; overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--text); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--text-muted); font-size: 1.05rem; max-width: 640px; line-height: 1.8; }
+
+  /* ─── DOMAIN ────────────────────────────────────────────────────────────────*/
+  #project-scope { background: var(--bg-white); }
+
+  .lit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .lit-card {
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 1.75rem; background: var(--bg);
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
   .lit-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-  /* Top accent bar per card color */
   .lit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .lit-card.teal::before  { background: var(--teal); }
-  .lit-card.blue::before  { background: var(--primary-light); }
+  .lit-card.teal::before { background: var(--teal); }
+  .lit-card.blue::before { background: var(--primary-light); }
   .lit-card.amber::before { background: var(--accent); }
-  .lit-card.red::before   { background: var(--accent-warm); }
+  .lit-card.red::before { background: var(--accent-warm); }
   .lit-card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
-  .lit-card p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+  .lit-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
-  /* ─── Research Gap — 2×2 Grid ────────────────────────────────────────────── */
-  .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-  .gap-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg); position: relative; overflow: hidden; transition: all 0.25s; }
-  .gap-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-  /* Left accent bar per card color */
-  .gap-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
-  .gap-card.teal::before  { background: var(--teal); }
-  .gap-card.blue::before  { background: var(--primary-light); }
-  .gap-card.amber::before { background: var(--accent); }
-  .gap-card.red::before   { background: var(--accent-warm); }
-  .gap-card h3   { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; }
-  .gap-card p    { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
-  .gap-icon      { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 3rem; }
+  .info-block h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; border-left: 3px solid var(--teal); padding-left: 0.75rem; }
+  .info-block p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
 
-  /* ─── Research Problem — Dark Background Section ─────────────────────────── */
-  #research-problem { background: var(--bg-dark); color: white; }
-  #research-problem .section-title { color: white; }
-  #research-problem .section-desc  { color: rgba(255,255,255,0.55); }
-  #research-problem .section-tag   { color: var(--teal-light); }
-  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
-  .problem-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 2rem; position: relative; overflow: hidden; transition: all 0.25s; }
-  .problem-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(30,200,160,0.25); }
-  .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .problem-card.teal-top::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
-  .problem-card.blue-top::before { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
-  .problem-card-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 1rem; }
-  .problem-card-icon.teal-ic { background: rgba(30,200,160,0.15); }
-  .problem-card-icon.blue-ic { background: rgba(46,134,193,0.15); }
-  .problem-card h3 { font-size: 1.05rem; font-weight: 600; color: white; margin-bottom: 1rem; }
-  .problem-card p  { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 0.75rem; }
-  .problem-card p:last-child { margin-bottom: 0; }
+  .obj-list { list-style: none; margin-top: 1rem; }
+  .obj-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .obj-list li:last-child { border-bottom: none; }
+  .obj-num {
+    min-width: 32px; height: 32px; border-radius: 8px;
+    background: var(--primary); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 600; font-family: var(--font-mono);
+  }
+  .obj-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+  .obj-text p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
 
-  /* ─── Research Objectives — 2×2 Grid ────────────────────────────────────── */
-  .obj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .obj-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--bg-white); position: relative; overflow: hidden; transition: all 0.25s; }
-  .obj-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-  .obj-num-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: var(--primary); color: white; font-size: 0.82rem; font-weight: 700; font-family: var(--font-mono); margin-bottom: 1rem; }
-  .obj-card h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.6rem; }
-  .obj-card p  { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
-  /* Bottom accent bar revealed on hover */
-  .obj-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; opacity: 0; transition: opacity 0.25s; }
-  .obj-card:hover::after { opacity: 1; }
-  .obj-card:nth-child(1)::after { background: var(--teal); }
-  .obj-card:nth-child(2)::after { background: var(--primary-light); }
-  .obj-card:nth-child(3)::after { background: var(--accent); }
-  .obj-card:nth-child(4)::after { background: var(--accent-warm); }
-
-  /* ─── Methodology — Dark Background Section ──────────────────────────────── */
+  /* ─── METHODOLOGY ───────────────────────────────────────────────────────────*/
   #methodology { background: var(--bg-dark); color: white; }
   #methodology .section-title { color: white; }
-  #methodology .section-desc  { color: rgba(255,255,255,0.55); }
-  #methodology .section-tag   { color: var(--teal-light); }
+  #methodology .section-desc { color: rgba(255,255,255,0.55); }
+  #methodology .section-tag { color: var(--teal-light); }
 
-  /* 4-step pipeline with connecting line */
-  .arch-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; position: relative; }
-  .arch-flow::before { content: ''; position: absolute; top: 56px; left: calc(12.5% + 1rem); right: calc(12.5% + 1rem); height: 2px; background: linear-gradient(90deg, var(--teal) 0%, var(--primary-light) 100%); z-index: 0; }
-  .arch-step { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 1.5rem 1rem; text-align: center; position: relative; z-index: 1; transition: background 0.25s; }
+  .arch-flow {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin-top: 3rem; position: relative;
+  }
+  .arch-flow::before {
+    content: ''; position: absolute;
+    top: 56px; left: calc(12.5% + 1rem); right: calc(12.5% + 1rem); height: 2px;
+    background: linear-gradient(90deg, var(--teal) 0%, var(--primary-light) 100%); z-index: 0;
+  }
+  .arch-step {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg); padding: 1.5rem 1rem;
+    text-align: center; position: relative; z-index: 1; transition: background 0.25s;
+  }
   .arch-step:hover { background: rgba(255,255,255,0.08); }
-  .arch-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(30,200,160,0.15); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .arch-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(30,200,160,0.15); margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
   .arch-step h4 { font-size: 0.9rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
-  .arch-step p  { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .arch-step p { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
 
-  /* 4 component detail cards */
   .comp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
-  .comp-card { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 1.75rem; position: relative; overflow: hidden; transition: border-color 0.25s; }
+  .comp-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg); padding: 1.75rem;
+    position: relative; overflow: hidden; transition: border-color 0.25s;
+  }
   .comp-card:hover { border-color: rgba(30,200,160,0.3); }
   .comp-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal-light); margin-bottom: 0.5rem; }
   .comp-card h3 { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.75rem; }
-  .comp-card p  { font-size: 0.87rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .comp-card p { font-size: 0.87rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
   .comp-owner { display: inline-flex; align-items: center; gap: 6px; margin-top: 1rem; font-size: 0.78rem; color: rgba(255,255,255,0.4); }
-  .comp-owner span { width: 22px; height: 22px; border-radius: 50%; background: rgba(46,134,193,0.3); color: var(--primary-light); display: inline-flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 600; }
+  .comp-owner span {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(46,134,193,0.3); color: var(--primary-light);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.68rem; font-weight: 600;
+  }
 
-  /* ─── Technologies ───────────────────────────────────────────────────────── */
+  /* ─── TECH ──────────────────────────────────────────────────────────────────*/
   #tech-used { background: var(--bg-white); }
   .tech-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
-  .tech-chip { display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px 8px 10px; font-size: 0.87rem; font-weight: 500; color: var(--text); transition: all 0.2s; }
+  .tech-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 18px 8px 10px;
+    font-size: 0.87rem; font-weight: 500; color: var(--text); transition: all 0.2s;
+  }
   .tech-chip:hover { border-color: var(--teal); box-shadow: 0 0 0 2px rgba(15,158,128,0.12); }
   .tech-chip .dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: white; }
-  /* Per-technology dot colors */
-  .dot-react  { background: #20B2AA; }
+  .dot-react { background: #20B2AA; }
   .dot-python { background: #3776AB; }
-  .dot-fastapi{ background: #009688; }
-  .dot-psql   { background: #336791; }
-  .dot-sk     { background: #F7931E; }
-  .dot-tf     { background: #FF6F00; }
-  .dot-jwt    { background: #000000; }
-  .dot-vite   { background: #646CFF; }
-  .dot-colab  { background: #F9AB00; }
-  .dot-figma  { background: #F24E1E; }
+  .dot-fastapi { background: #009688; }
+  .dot-psql { background: #336791; }
+  .dot-sk { background: #F7931E; }
+  .dot-tf { background: #FF6F00; }
+  .dot-jwt { background: #000000; }
+  .dot-vite { background: #646CFF; }
+  .dot-colab { background: #F9AB00; }
+  .dot-figma { background: #F24E1E; }
 
-  /* ─── Milestones Timeline ────────────────────────────────────────────────── */
+  /* ─── CHECKLISTS SECTION ────────────────────────────────────────────────────*/
+  #checklists { background: var(--bg-white); }
+
+  .checklist-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .checklist-card {
+    border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+    background: var(--bg);
+  }
+  .checklist-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .checklist-card-header {
+    padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .cl-icon-wrap {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .cl-1 .checklist-card-header { background: linear-gradient(135deg, rgba(15,158,128,0.12), rgba(30,200,160,0.06)); }
+  .cl-1 .cl-icon-wrap { background: rgba(15,158,128,0.15); }
+  .cl-2 .checklist-card-header { background: linear-gradient(135deg, rgba(27,79,114,0.12), rgba(46,134,193,0.06)); }
+  .cl-2 .cl-icon-wrap { background: rgba(46,134,193,0.15); }
+  .cl-3 .checklist-card-header { background: linear-gradient(135deg, rgba(231,111,81,0.12), rgba(244,162,97,0.06)); }
+  .cl-3 .cl-icon-wrap { background: rgba(231,111,81,0.15); }
+  .cl-header-text h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+  .cl-header-text span { font-size: 0.78rem; color: var(--text-muted); }
+  .checklist-card-body { padding: 0 1.5rem 1.5rem; }
+  .checklist-card-body p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .checklist-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none; font-size: 0.875rem; font-weight: 600;
+    padding: 0.65rem 1.25rem; border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .cl-1 .checklist-link { background: rgba(15,158,128,0.1); color: var(--teal); }
+  .cl-1 .checklist-link:hover { background: var(--teal); color: white; }
+  .cl-2 .checklist-link { background: rgba(46,134,193,0.1); color: var(--primary-light); }
+  .cl-2 .checklist-link:hover { background: var(--primary-light); color: white; }
+  .cl-3 .checklist-link { background: rgba(231,111,81,0.1); color: var(--accent-warm); }
+  .cl-3 .checklist-link:hover { background: var(--accent-warm); color: white; }
+
+  /* ─── MILESTONES ────────────────────────────────────────────────────────────*/
   #milestones { background: var(--bg); }
   .timeline { position: relative; margin-top: 3.5rem; padding-left: 2rem; }
-  /* Vertical gradient line */
-  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--teal), var(--primary-light), transparent); }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px;
+    background: linear-gradient(to bottom, var(--teal), var(--primary-light), transparent);
+  }
   .milestone-item { position: relative; margin-bottom: 2.5rem; padding-left: 2.5rem; }
-  .milestone-dot { position: absolute; left: -2.25rem; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--teal); background: var(--bg-white); }
+  .milestone-dot {
+    position: absolute; left: -2.25rem; top: 4px;
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid var(--teal); background: var(--bg-white);
+  }
   .milestone-dot.done { background: var(--teal); }
   .milestone-date { font-size: 0.78rem; font-weight: 600; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
   .milestone-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
   .milestone-card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
-  .milestone-card p  { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+  .milestone-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
   .milestone-meta { display: flex; gap: 1rem; margin-top: 0.75rem; flex-wrap: wrap; }
   .m-tag { font-size: 0.75rem; font-weight: 500; padding: 3px 10px; border-radius: 6px; background: rgba(15,158,128,0.1); color: var(--teal); }
 
-  /* ─── Documents — 4-Column Grid ─────────────────────────────────────────── */
+  /* ─── DOCUMENTS ─────────────────────────────────────────────────────────────*/
   #downloads { background: var(--bg-white); }
-  .doc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    gap: 1rem;
-    margin-top: 2.5rem;
+  .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .doc-card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem; background: var(--bg);
+    display: flex; flex-direction: column; gap: 0.5rem; transition: all 0.2s;
   }
-  .doc-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; background: var(--bg); display: flex; flex-direction: column; gap: 0.5rem; transition: all 0.2s; }
   .doc-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow-sm); }
   .doc-icon { font-size: 28px; margin-bottom: 0.25rem; }
   .doc-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); }
-  .doc-card p  { font-size: 0.82rem; color: var(--text-muted); flex: 1; }
+  .doc-card p { font-size: 0.82rem; color: var(--text-muted); flex: 1; }
   .doc-status { font-size: 0.75rem; font-weight: 500; padding: 2px 10px; border-radius: 6px; display: inline-block; }
-  .status-done    { background: rgba(15,158,128,0.1); color: var(--teal); }
+  .status-done { background: rgba(15,158,128,0.1); color: var(--teal); }
   .status-pending { background: rgba(244,162,97,0.12); color: #b56a1a; }
-  .doc-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 500; color: var(--primary-light); text-decoration: none; margin-top: auto; padding-top: 0.5rem; transition: gap 0.2s; }
+  .doc-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; font-weight: 500; color: var(--primary-light);
+    text-decoration: none; margin-top: auto; padding-top: 0.5rem; transition: gap 0.2s;
+  }
   .doc-link:hover { gap: 10px; }
 
-  /* ─── Presentations ──────────────────────────────────────────────────────── */
+  /* ─── PRESENTATIONS ─────────────────────────────────────────────────────────*/
   #presentations { background: var(--bg); }
-  .pres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+  .pres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.25rem; margin-top: 2.5rem; }
   .pres-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-white); transition: all 0.2s; }
   .pres-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
   .pres-thumb { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
@@ -271,40 +420,68 @@
   .pres-thumb.t4 { background: linear-gradient(135deg, #f0e8f7, #d8c0ec); }
   .pres-info { padding: 1rem 1.25rem; }
   .pres-info h3 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
-  .pres-info p  { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .pres-info p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem; }
   .pres-link { font-size: 0.8rem; font-weight: 500; color: var(--primary-light); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
 
-  /* ─── About / Team ───────────────────────────────────────────────────────── */
+  /* ─── ABOUT / TEAM ───────────────────────────────────────────────────────────*/
   #about { background: var(--bg-dark); }
   #about .section-title { color: white; }
-  #about .section-desc  { color: rgba(255,255,255,0.55); }
-  #about .section-tag   { color: var(--teal-light); }
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .member-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 1.75rem 1.25rem; text-align: center; transition: all 0.25s; }
+  #about .section-desc { color: rgba(255,255,255,0.55); }
+  #about .section-tag { color: var(--teal-light); }
+
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .member-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg); padding: 1.75rem 1.25rem;
+    text-align: center; transition: all 0.25s;
+  }
   .member-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(30,200,160,0.2); }
-  .member-avatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; font-family: var(--font-display); color: white; }
-  .av-1 { background: linear-gradient(135deg, #1E8449, #27AE60); }
-  .av-2 { background: linear-gradient(135deg, #1A5276, #2E86C1); }
-  .av-3 { background: linear-gradient(135deg, #6C3483, #8E44AD); }
-  .av-4 { background: linear-gradient(135deg, #784212, #CA6F1E); }
-  .member-name  { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
-  .member-role  { font-size: 0.8rem; color: var(--teal-light); margin-bottom: 0.5rem; font-weight: 500; }
-  .member-comp  { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+
+  /* ── Photo avatar ── */
+  .member-avatar {
+    width: 88px; height: 88px; border-radius: 50%;
+    margin: 0 auto 1rem; overflow: hidden;
+    border: 3px solid rgba(30,200,160,0.3);
+    box-shadow: 0 0 0 4px rgba(30,200,160,0.08);
+    background: rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .member-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  /* Fallback initials (shown when img fails) */
+  .member-avatar .avatar-fallback {
+    font-size: 1.6rem; font-weight: 700;
+    font-family: var(--font-display); color: white;
+    display: none;
+  }
+  .member-avatar img[data-error="true"] { display: none; }
+  .member-avatar img[data-error="true"] ~ .avatar-fallback { display: flex; }
+
+  .av-1 { border-color: rgba(39,174,96,0.4); box-shadow: 0 0 0 4px rgba(39,174,96,0.08); }
+  .av-2 { border-color: rgba(46,134,193,0.4); box-shadow: 0 0 0 4px rgba(46,134,193,0.08); }
+  .av-3 { border-color: rgba(142,68,173,0.4); box-shadow: 0 0 0 4px rgba(142,68,173,0.08); }
+  .av-4 { border-color: rgba(202,111,30,0.4); box-shadow: 0 0 0 4px rgba(202,111,30,0.08); }
+
+  .member-name { font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
+  .member-role { font-size: 0.8rem; color: var(--teal-light); margin-bottom: 0.5rem; font-weight: 500; }
+  .member-comp { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+  .member-desc { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; line-height: 1.6; }
   .member-email { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; display: block; transition: color 0.2s; }
   .member-email:hover { color: var(--teal-light); }
 
-  /* ─── Contact ────────────────────────────────────────────────────────────── */
+  /* ─── CONTACT ────────────────────────────────────────────────────────────── */
   #contact { background: var(--bg); }
   .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
   .contact-info h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 1.25rem; }
   .contact-item { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
   .c-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--bg-white); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .c-text p    { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.1rem; }
+  .c-text p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.1rem; }
   .c-text a, .c-text span { font-size: 0.9rem; font-weight: 500; color: var(--text); text-decoration: none; }
 
-  /* Contact form */
   .contact-form { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
-  .contact-form h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text); }
   .form-group { margin-bottom: 1.25rem; }
   .form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
   .form-group input, .form-group textarea, .form-group select {
@@ -312,60 +489,56 @@
     padding: 0.75rem 1rem; font-size: 0.9rem; font-family: var(--font-body);
     background: var(--bg); color: var(--text); transition: border-color 0.2s; outline: none;
   }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(15,158,128,0.1); }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--teal); }
   .form-group textarea { resize: vertical; min-height: 120px; }
-  .btn-submit { width: 100%; background: var(--teal); color: white; border: none; padding: 0.9rem; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .btn-submit:hover { background: var(--teal-light); transform: translateY(-1px); }
-  .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-  .form-success { display: none; text-align: center; padding: 2rem 1rem; }
-  .form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
-  .form-success h4 { font-size: 1.1rem; font-weight: 600; color: var(--teal); margin-bottom: 0.5rem; }
-  .form-success p  { font-size: 0.9rem; color: var(--text-muted); }
-  .form-error { background: rgba(231,111,81,0.1); border: 1px solid rgba(231,111,81,0.3); color: #c0392b; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.85rem; margin-bottom: 1rem; display: none; }
+  .btn-submit {
+    width: 100%; background: var(--teal); color: white; border: none;
+    padding: 0.9rem; border-radius: 10px; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; font-family: var(--font-body); transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--teal-light); }
 
-  /* ─── Footer ─────────────────────────────────────────────────────────────── */
-  footer { background: var(--bg-dark2); color: rgba(255,255,255,0.45); padding: 2rem; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.04); }
+  /* ─── FOOTER ────────────────────────────────────────────────────────────────*/
+  footer {
+    background: var(--bg-dark2); color: rgba(255,255,255,0.45);
+    padding: 2rem; text-align: center; font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
   footer a { color: var(--teal-light); text-decoration: none; }
 
-  /* ─── Scroll Fade-In Animation ───────────────────────────────────────────── */
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
-  .fade-in.visible { opacity: 1; transform: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
 
-  /* ─── Responsive Breakpoints ─────────────────────────────────────────────── */
+  /* ─── RESPONSIVE ────────────────────────────────────────────────────────────*/
   @media (max-width: 900px) {
     .hero-content { grid-template-columns: 1fr; gap: 3rem; }
     .hero-stats { grid-template-columns: repeat(3,1fr); }
     .arch-flow { grid-template-columns: repeat(2,1fr); }
-    .arch-flow::before { display: none; } /* hide connector line on mobile */
-    .comp-grid, .problem-grid, .gap-grid, .obj-grid { grid-template-columns: 1fr; }
+    .arch-flow::before { display: none; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
     .contact-wrap { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hamburger { display: block; }
-    /* Collapse to 2 cols on tablet */
-    .lit-grid  { grid-template-columns: 1fr 1fr; }
-    .doc-grid  { grid-template-columns: repeat(2, 1fr); }
-    .pres-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     section { padding: 4rem 1.25rem; }
     .hero-content { padding: 3rem 1.25rem; }
     .hero-stats { grid-template-columns: repeat(3,1fr); gap: 0.5rem; }
-    /* Single column on small phones */
-    .lit-grid, .doc-grid, .pres-grid { grid-template-columns: 1fr; }
+    .checklist-cards { grid-template-columns: 1fr; }
   }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-in.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════ NAVIGATION ═══ -->
+<!-- NAV -->
 <nav>
   <a class="nav-brand" href="#home">
-    <div class="nav-logo">
-      <img src="../../ShilpaSuraksha_LOGO.png" alt="ShilpaSuraksha Logo" class="logo-image">
-    </div>
+    <div class="nav-logo">SS</div>
     <span>ShilpaSuraksha</span>
   </a>
-
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li class="dropdown">
@@ -379,6 +552,26 @@
       </div>
     </li>
     <li><a href="#milestones">Milestones</a></li>
+
+    <!-- ── CHECKLISTS DROPDOWN ── -->
+    <li class="dropdown">
+      <a href="#checklists">Checklists ▾</a>
+      <div class="dropdown-menu">
+        <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.3);padding:0.4rem 1rem 0.2rem;font-weight:600;">Project Checklists</p>
+        <a href="https://drive.google.com/drive/folders/1NcDGA9n20PCPavsBZN_4M4EVLDwJPMVC?usp=drive_link" target="_blank" class="checklist-item">
+          <span class="checklist-badge cb-1">✓</span> Checklist 01
+        </a>
+        <hr class="checklist-sep">
+        <a href="https://drive.google.com/drive/folders/189uKgS5ajrOfNvqbPUITqKv_n_IKi3iM?usp=drive_link" target="_blank" class="checklist-item">
+          <span class="checklist-badge cb-2">✓</span> Checklist 02
+        </a>
+        <hr class="checklist-sep">
+        <a href="https://drive.google.com/drive/folders/1BCAN-thvrrjMgwxBJz8biQIXjvfs5EIw?usp=drive_link" target="_blank" class="checklist-item">
+          <span class="checklist-badge cb-3">✓</span> Checklist 03
+        </a>
+      </div>
+    </li>
+
     <li class="dropdown">
       <a href="#downloads">Downloads ▾</a>
       <div class="dropdown-menu">
@@ -389,14 +582,12 @@
     <li><a href="#about">About Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-
-  <!-- Mobile toggle: toggles flex display on nav-links -->
-  <button class="hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+  <button class="hamburger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════ HERO ════ -->
+<!-- HERO -->
 <section id="home">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -428,8 +619,6 @@
         </div>
       </div>
     </div>
-
-    <!-- 4 component cards stacked vertically on the right -->
     <div class="hero-visual">
       <div class="hero-card">
         <div class="hero-card-icon ic-teal">🎯</div>
@@ -455,7 +644,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════ DOMAIN: LITERATURE SURVEY (2×2) ════ -->
+<!-- DOMAIN: LITERATURE SURVEY -->
 <section id="project-scope">
   <div class="container">
     <span class="section-tag">Domain</span>
@@ -463,8 +652,6 @@
     <p class="section-desc">
       Academic risk identification for primary students remains a largely reactive, manual process in Sri Lanka. Our research synthesizes global findings on early warning systems, behavioral analytics, and adaptive learning to address this critical gap.
     </p>
-
-    <!-- 2×2 grid: 4 literature themes -->
     <div class="lit-grid">
       <div class="lit-card teal fade-in">
         <h3>Early Warning Systems in Education</h3>
@@ -484,97 +671,85 @@
       </div>
     </div>
 
-    <!-- ─── Research Gap subsection ─────────────────────────────────────── -->
     <hr class="divider" id="research-gap">
     <span class="section-tag">Research Gap</span>
     <h2 class="section-title">What's Missing</h2>
-    <p class="section-desc">Existing solutions fail to address the multi-dimensional nature of academic risk in Sri Lankan primary school contexts.</p>
-
-    <!-- 2×2 gap cards -->
-    <div class="gap-grid">
-      <div class="gap-card teal fade-in">
-        <div class="gap-icon">🔗</div>
-        <h3>No Unified Multi-Dimensional System</h3>
-        <p>Existing educational systems in Sri Lanka address only academic data (marks, attendance) in isolation. There is no integrated system that combines academic performance, emotional state, behavioral patterns, and intelligent intervention into one platform for primary school teachers.</p>
+    <div class="two-col">
+      <div>
+        <div class="info-block">
+          <h3>No Unified Multi-Dimensional System</h3>
+          <p>Existing educational systems in Sri Lanka address only academic data (marks, attendance) in isolation. There is no integrated system that combines academic performance, emotional state, behavioral patterns, and intelligent intervention into one platform for primary school teachers.</p>
+        </div>
+        <div class="info-block">
+          <h3>Lack of Local Context</h3>
+          <p>International EdTech solutions are not adapted for the Sri Lankan primary school curriculum, grading structures, or Sinhala/Tamil language contexts. There is an acute absence of locally-trained ML models for Sri Lankan student behavioral data.</p>
+        </div>
       </div>
-      <div class="gap-card blue fade-in">
-        <div class="gap-icon">🌏</div>
-        <h3>Lack of Local Context</h3>
-        <p>International EdTech solutions are not adapted for the Sri Lankan primary school curriculum, grading structures, or Sinhala/Tamil language contexts. There is an acute absence of locally-trained ML models for Sri Lankan student behavioral data.</p>
-      </div>
-      <div class="gap-card amber fade-in">
-        <div class="gap-icon">⏱️</div>
-        <h3>Reactive Rather Than Predictive</h3>
-        <p>Current school management systems (if any) are purely administrative. They do not predict academic risk — teachers identify struggling students only after grades deteriorate, leaving little time for effective intervention before assessments.</p>
-      </div>
-      <div class="gap-card red fade-in">
-        <div class="gap-icon">🗺️</div>
-        <h3>No Automated Learning Path Generation</h3>
-        <p>While commercial LMS platforms exist, none automatically generate personalized remedial learning paths for primary students based on specific subject weaknesses identified via AI analysis, especially for the Sri Lankan curriculum framework.</p>
+      <div>
+        <div class="info-block">
+          <h3>Reactive Rather Than Predictive</h3>
+          <p>Current school management systems (if any) are purely administrative. They do not predict academic risk — teachers identify struggling students only after grades deteriorate, leaving little time for effective intervention before assessments.</p>
+        </div>
+        <div class="info-block">
+          <h3>No Automated Learning Path Generation</h3>
+          <p>While commercial LMS platforms exist, none automatically generate personalized remedial learning paths for primary students based on specific subject weaknesses identified via AI analysis, especially for the Sri Lankan curriculum framework.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════════ RESEARCH PROBLEM (dark) ════ -->
-<section id="research-problem">
-  <div class="container">
+    <hr class="divider" id="research-problem">
     <span class="section-tag">Research Problem & Proposed Solution</span>
-    <h2 class="section-title" style="color: white;">The Core Problem</h2>
-    <p class="section-desc" style="color: rgba(255,255,255,0.55);">
-      Primary school teachers in Sri Lanka manage large classrooms with limited tools. By the time academic decline is noticed, critical learning milestones have already been missed.
-    </p>
-
-    <div class="problem-grid">
-      <div class="problem-card teal-top fade-in">
-        <div class="problem-card-icon teal-ic">🔍</div>
+    <h2 class="section-title">The Core Problem</h2>
+    <div class="two-col">
+      <div class="info-block">
         <h3>Proposed Research Problem</h3>
         <p>How can an integrated AI-driven system identify academically at-risk primary school students in Sri Lanka through multi-dimensional analysis — combining academic performance data, emotional state detection from handwriting and drawings, and behavioral patterns — to provide teachers with timely, actionable, and personalized intervention strategies?</p>
-        <p>By the time a student's academic decline is noticed, critical learning milestones have already been missed. The problem compounds when emotional and behavioral factors go undetected.</p>
+        <p>Primary school teachers in Sri Lanka manage large classrooms with limited tools. By the time a student's academic decline is noticed, critical learning milestones have already been missed. The problem compounds when emotional and behavioral factors go undetected.</p>
       </div>
-      <div class="problem-card blue-top fade-in">
-        <div class="problem-card-icon blue-ic">🛡️</div>
+      <div class="info-block">
         <h3>Proposed Solution — ShilpaSuraksha</h3>
         <p>ShilpaSuraksha (Shield of Protection) is a full-stack web platform that integrates four AI-powered modules under a unified teacher interface. School administrators manage schools and teachers; teachers manage students, feed academic and behavioral data, and receive AI-generated risk flags and personalized learning recommendations.</p>
         <p>The system uses trained ML/DL models for academic risk prediction and behavioral/emotion analysis, an intelligent recommendation engine for learning path generation, and a real-time dashboard for student progress visualization and intervention tracking.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══════════════════════════════════════════════════════════ OBJECTIVES ════ -->
-<section id="objectives" style="background: var(--bg-white);">
-  <div class="container">
+    <hr class="divider" id="objectives">
     <span class="section-tag">Research Objectives</span>
     <h2 class="section-title">What We Set Out to Achieve</h2>
-    <p class="section-desc">Four focused objectives drive the ShilpaSuraksha research, each corresponding to a dedicated system component.</p>
-
-    <div class="obj-grid">
-      <div class="obj-card fade-in">
-        <div class="obj-num-badge">01</div>
-        <h4>Develop an Academic Early Warning System</h4>
-        <p>Build a machine learning model that analyzes student attendance records and assessment marks to predict academic risk levels (weak/not weak), enabling proactive teacher intervention before irreversible learning gaps form.</p>
-      </div>
-      <div class="obj-card fade-in">
-        <div class="obj-num-badge">02</div>
-        <h4>Create a Behavioral and Emotional Analysis Module</h4>
-        <p>Design and train a deep learning model (CNN-based) capable of analyzing student hand drawings and writings to detect emotional distress and behavioral anomalies that correlate with academic struggles.</p>
-      </div>
-      <div class="obj-card fade-in">
-        <div class="obj-num-badge">03</div>
-        <h4>Build an Intelligent Personalized Recommendation System</h4>
-        <p>Develop an AI recommendation engine that generates tailored learning paths (activities, assessments, tasks) for identified at-risk students based on their specific subject weaknesses and weak sections, tracked progressively over time.</p>
-      </div>
-      <div class="obj-card fade-in">
-        <div class="obj-num-badge">04</div>
-        <h4>Design an Interactive Student Improvement Dashboard</h4>
-        <p>Create a comprehensive teacher-facing dashboard that clusters students by academic and behavioral risk profiles, visualizes progress trends, orchestrates interventions, and provides outcome summaries to support data-driven teaching decisions.</p>
-      </div>
-    </div>
+    <ul class="obj-list">
+      <li>
+        <div class="obj-num">01</div>
+        <div class="obj-text">
+          <h4>Develop an Academic Early Warning System</h4>
+          <p>Build a machine learning model that analyzes student attendance records and assessment marks to predict academic risk levels (weak/not weak), enabling proactive teacher intervention before irreversible learning gaps form.</p>
+        </div>
+      </li>
+      <li>
+        <div class="obj-num">02</div>
+        <div class="obj-text">
+          <h4>Create a Behavioral and Emotional Analysis Module</h4>
+          <p>Design and train a deep learning model (CNN-based) capable of analyzing student hand drawings and writings to detect emotional distress and behavioral anomalies that correlate with academic struggles.</p>
+        </div>
+      </li>
+      <li>
+        <div class="obj-num">03</div>
+        <div class="obj-text">
+          <h4>Build an Intelligent Personalized Recommendation System</h4>
+          <p>Develop an AI recommendation engine that generates tailored learning paths (activities, assessments, tasks) for identified at-risk students based on their specific subject weaknesses and weak sections, tracked progressively over time.</p>
+        </div>
+      </li>
+      <li>
+        <div class="obj-num">04</div>
+        <div class="obj-text">
+          <h4>Design an Interactive Student Improvement Dashboard</h4>
+          <p>Create a comprehensive teacher-facing dashboard that clusters students by academic and behavioral risk profiles, visualizes progress trends, orchestrates interventions, and provides outcome summaries to support data-driven teaching decisions.</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ METHODOLOGY ════ -->
+<!-- METHODOLOGY -->
 <section id="methodology">
   <div class="container">
     <span class="section-tag">Methodology</span>
@@ -582,8 +757,6 @@
     <p class="section-desc">
       ShilpaSuraksha follows a layered architecture with a React frontend, FastAPI backend, PostgreSQL database, and trained ML/DL models served via dedicated model APIs.
     </p>
-
-    <!-- 4-step data pipeline with horizontal connector line (hidden on mobile) -->
     <div class="arch-flow">
       <div class="arch-step fade-in">
         <div class="arch-icon">📥</div>
@@ -607,7 +780,6 @@
       </div>
     </div>
 
-    <!-- 4 component deep-dive cards -->
     <div class="comp-grid" style="margin-top: 4rem;">
       <div class="comp-card">
         <div class="comp-label">Component 01</div>
@@ -637,13 +809,12 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════ TECH STACK ════ -->
+<!-- TECH USED -->
 <section id="tech-used">
   <div class="container">
     <span class="section-tag">Technologies Used</span>
     <h2 class="section-title">Technology Stack</h2>
     <p class="section-desc">ShilpaSuraksha is built on a modern, production-grade full-stack architecture combining React, FastAPI, PostgreSQL, and machine learning frameworks.</p>
-
     <div class="tech-grid">
       <div class="tech-chip"><div class="dot dot-react">⚛</div> React.js (Vite)</div>
       <div class="tech-chip"><div class="dot dot-python">🐍</div> Python 3.11</div>
@@ -658,8 +829,6 @@
       <div class="tech-chip"><div class="dot dot-react">📦</div> Alembic (DB Migrations)</div>
       <div class="tech-chip"><div class="dot dot-psql">🛡️</div> CORS Middleware</div>
     </div>
-
-    <!-- Architecture layer breakdown -->
     <div style="margin-top: 2.5rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem;">
       <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text);">System Architecture Overview</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem;">
@@ -684,13 +853,14 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ MILESTONES ════ -->
+
+
+<!-- MILESTONES -->
 <section id="milestones">
   <div class="container">
     <span class="section-tag">Milestones</span>
     <h2 class="section-title">Project Timeline</h2>
     <p class="section-desc">ShilpaSuraksha progresses through a structured series of assessments across the academic year 2025/2026.</p>
-
     <div class="timeline">
       <div class="milestone-item fade-in">
         <div class="milestone-dot done"></div>
@@ -729,71 +899,11 @@
         </div>
       </div>
       <div class="milestone-item fade-in">
-        <div class="milestone-dot done"></div>
-        <div class="milestone-date">26 April 2026</div>
-        <div class="milestone-card">
-          <h3>Draft Final Thesis Submission</h3>
-          <p>Submission of the draft final thesis documenting the full research — design decisions, model performance, system evaluation, limitations, and future work directions.</p>
-          <div class="milestone-meta">
-            <span class="m-tag">Deadline: 26 Apr 2026</span>
-            <span class="m-tag" style="background: rgba(15,158,128,0.12); color: var(--teal);">✓ Completed</span>
-          </div>
-        </div>
-      </div>
-      <div class="milestone-item fade-in">
-        <div class="milestone-dot done"></div>
-        <div class="milestone-date">26 April 2026</div>
-        <div class="milestone-card">
-          <h3>Website Submission</h3>
-          <p>This project website — ShilpaSuraksha — serves as the public-facing research documentation hub, covering the full scope of the system for public and academic audiences.</p>
-          <div class="milestone-meta">
-            <span class="m-tag">Marks: 2%</span>
-            <span class="m-tag" style="background: rgba(15,158,128,0.12); color: var(--teal);">✓ Completed</span>
-          </div>
-        </div>
-      </div>
-      <div class="milestone-item fade-in">
         <div class="milestone-dot"></div>
-        <div class="milestone-date">30 April 2026</div>
-        <div class="milestone-card">
-          <h3>Final Checklist Submission</h3>
-          <p>Submission of the final project checklist confirming all deliverables, documents, and requirements have been completed and submitted as per SLIIT guidelines.</p>
-          <div class="milestone-meta">
-            <span class="m-tag">Deadline: 30 Apr 2026</span>
-            <span class="m-tag" style="background: rgba(15,158,128,0.12); color: var(--teal);">✓ Completed</span>
-          </div>
-        </div>
-      </div>
-      <div class="milestone-item fade-in">
-        <div class="milestone-dot done"></div>
-        <div class="milestone-date">27 Apr – 06 May 2026</div>
-        <div class="milestone-card">
-          <h3>Final Presentation & Viva</h3>
-          <p>Individual viva examinations assess each member's contribution to the project. Group presentation of the completed system to the evaluation panel.</p>
-          <div class="milestone-meta">
-            <span class="m-tag">Marks: 20%</span>
-            <span class="m-tag" style="background: rgba(244,162,97,0.12); color: #b56a1a;">⏳ In Progress</span>
-          </div>
-        </div>
-      </div>
-      <div class="milestone-item fade-in">
-        <div class="milestone-dot done"></div>
-        <div class="milestone-date">27 Apr – 06 May 2026</div>
-        <div class="milestone-card">
-          <h3>Website Evaluation & Logbook Submission</h3>
-          <p>Final evaluation of the project website and submission of the logbook documenting weekly progress, contributions, and reflections from each team member.</p>
-          <div class="milestone-meta">
-            <span class="m-tag">Deadline: 06 May 2026</span>
-            <span class="m-tag" style="background: rgba(244,162,97,0.12); color: #b56a1a;">⏳ In Progress</span>
-          </div>
-        </div>
-      </div>
-      <div class="milestone-item fade-in">
-        <div class="milestone-dot"></div>
-        <div class="milestone-date">08 May 2026</div>
+        <div class="milestone-date">April 2025</div>
         <div class="milestone-card">
           <h3>Research Paper Submission</h3>
-          <p>Academic paper documenting the research contributions, methodology, experimental results, model evaluations, and conclusions.</p>
+          <p>Academic paper documenting the research contributions, methodology, experimental results, model evaluations, and conclusions. Submitted for publication and peer review.</p>
           <div class="milestone-meta">
             <span class="m-tag">Marks: 10%</span>
             <span class="m-tag" style="background: rgba(244,162,97,0.12); color: #b56a1a;">⏳ In Progress</span>
@@ -802,10 +912,22 @@
       </div>
       <div class="milestone-item fade-in">
         <div class="milestone-dot"></div>
-        <div class="milestone-date">13 May 2026</div>
+        <div class="milestone-date">May 2025</div>
         <div class="milestone-card">
-          <h3>Final Thesis Submission</h3>
-          <p>Comprehensive final thesis covering all aspects of the research project — design decisions, model performance, system evaluation, limitations, and future work directions.</p>
+          <h3>Website Assessment</h3>
+          <p>This project website — ShilpaSuraksha — serves as the public-facing research documentation hub, covering the full scope of the system for public and academic audiences.</p>
+          <div class="milestone-meta">
+            <span class="m-tag">Marks: 2%</span>
+            <span class="m-tag" style="background: rgba(46,134,193,0.1); color: var(--primary-light);">🔵 Active</span>
+          </div>
+        </div>
+      </div>
+      <div class="milestone-item fade-in">
+        <div class="milestone-dot"></div>
+        <div class="milestone-date">May 2025</div>
+        <div class="milestone-card">
+          <h3>Final Report</h3>
+          <p>Comprehensive final documentation covering all aspects of the research project — design decisions, model performance, system evaluation, limitations, and future work directions.</p>
           <div class="milestone-meta">
             <span class="m-tag">Marks: 19%</span>
             <span class="m-tag" style="background: rgba(244,162,97,0.12); color: #b56a1a;">⏳ Pending</span>
@@ -814,12 +936,12 @@
       </div>
       <div class="milestone-item fade-in">
         <div class="milestone-dot"></div>
-        <div class="milestone-date">15 June 2026</div>
+        <div class="milestone-date">June 2025</div>
         <div class="milestone-card">
-          <h3>Research Paper Publication Evidence</h3>
-          <p>Submission of evidence of research paper publication or acceptance to a peer-reviewed conference or journal.</p>
+          <h3>Final Presentation & Viva</h3>
+          <p>Individual viva examinations assess each member's contribution to the project. Group presentation of the completed system to the evaluation panel.</p>
           <div class="milestone-meta">
-            <span class="m-tag">Deadline: 15 Jun 2026</span>
+            <span class="m-tag">Marks: 20%</span>
             <span class="m-tag" style="background: rgba(244,162,97,0.12); color: #b56a1a;">⏳ Upcoming</span>
           </div>
         </div>
@@ -828,90 +950,86 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════════ DOCUMENTS — 4-Column Grid ════ -->
+<!-- DOCUMENTS -->
 <section id="downloads">
   <div class="container">
     <span class="section-tag">Downloads</span>
     <h2 class="section-title">Documents</h2>
     <p class="section-desc">All research documents produced throughout the project lifecycle. Links are updated as submissions are finalized.</p>
-
-    <!-- 4 columns × 2 rows = 8 document cards -->
     <div class="doc-grid">
       <div class="doc-card">
         <div class="doc-icon">📋</div>
         <h3>Topic Assessment Form (TAF)</h3>
         <p>Initial topic assessment submitted for approval of the ShilpaSuraksha research topic.</p>
         <span class="doc-status status-done">Submitted</span>
-        <a href="https://drive.google.com/file/d/1MpWvBNdC3hkjbkb4KLOV3NxapEvO2B2Q/view?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
+        <a href="https://drive.google.com/file/d/1vbBZTHaeZKyv7uFWT9N16HneLBC0Z_vr/view?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
       </div>
       <div class="doc-card">
         <div class="doc-icon">📝</div>
         <h3>Project Charter</h3>
         <p>Formal document defining project scope, objectives, team roles, and initial planning for ShilpaSuraksha.</p>
         <span class="doc-status status-done">Submitted</span>
-        <a href="https://drive.google.com/file/d/1Q4E072HA__51BJ0wVgUiOVWT10HyzCPr/view?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
+        <a href="#" class="doc-link">Download ↗</a>
       </div>
       <div class="doc-card">
         <div class="doc-icon">📄</div>
-        <h3>Project Proposal Documents</h3>
+        <h3>Project Proposal Document</h3>
         <p>Detailed research proposal covering literature review, research gap, objectives, and proposed methodology.</p>
         <span class="doc-status status-done">Submitted</span>
-        <a href="https://drive.google.com/drive/folders/1gtQU5-GpL1dpwzfFixa8Gz9mcRu-4tpy?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
+        <a href="#" class="doc-link">Download ↗</a>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">🚀</div>
-        <h3>Deployment Report</h3>
-        <p>Technical report documenting the deployment architecture, hosting configuration, CI/CD setup, and environment specifications.</p>
+        <div class="doc-icon">📊</div>
+        <h3>Status Document I</h3>
+        <p>Progress report validating 50% completion — covering model training, backend API, and frontend scaffolding.</p>
         <span class="doc-status status-done">Submitted</span>
-        <a href="https://drive.google.com/file/d/1Foa-zZMLSDofRSrI18Cyfbr4yMy2FKQ4/view?usp=drive_link" class="doc-link" target="_blank">Download ↗</a>
+        <a href="#" class="doc-link">Download ↗</a>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📕</div>
-        <h3>Final Thesis — Group</h3>
-        <p>Comprehensive group thesis covering the complete system design, implementation, evaluation, and conclusions.</p>
-        <span class="doc-status status-pending">Pending</span>
-        <a href="https://docs.google.com/document/d/16sYh86maRVGcrOeBexP7oN1y4C8hgdMo/edit?usp=drive_link&ouid=102955434336409663104&rtpof=true&sd=true" class="doc-link" target="_blank">Download ↗</a>
-      </div>
-      <div class="doc-card">
-        <div class="doc-icon">📗</div>
-        <h3>Final Thesis — Individual</h3>
-        <p>Individual thesis from each team member detailing their specific component contributions.</p>
-        <span class="doc-status status-pending">Pending</span>
-        <a href="https://drive.google.com/drive/folders/1F6_DZ893yxCmn4Ka0esAkRaNU98UmpIi?usp=drive_link" class="doc-link">Download ↗</a>
+        <div class="doc-icon">📊</div>
+        <h3>Status Document II</h3>
+        <p>Progress report validating 90% completion — all four components integrated and tested.</p>
+        <span class="doc-status status-done">Submitted</span>
+        <a href="#" class="doc-link">Download ↗</a>
       </div>
       <div class="doc-card">
         <div class="doc-icon">📰</div>
-        <h3>Research Papers</h3>
+        <h3>Research Paper</h3>
         <p>Academic paper documenting ShilpaSuraksha's research contributions, model evaluations, and findings.</p>
         <span class="doc-status status-pending">In Progress</span>
-        <a href="https://drive.google.com/drive/folders/1b_31RnKpiGo-MXa2ud3ADpSkpFFJJZTl?usp=drive_link" class="doc-link" style="color: var(--text-light); pointer-events: none;" target="_blank">Link Pending</a>
+        <a href="#" class="doc-link" style="color: var(--text-light); pointer-events: none;">Link Pending</a>
       </div>
-      <!-- Placeholder card to complete the 4×2 layout -->
-      <div class="doc-card" style="opacity: 0.45; pointer-events: none;">
-        <div class="doc-icon">📑</div>
-        <h3>Publication Evidence</h3>
-        <p>Evidence of accepted research paper publication in a peer-reviewed conference or journal.</p>
-        <span class="doc-status status-pending">Upcoming</span>
-        <span class="doc-link" style="color: var(--text-light);">Link Pending</span>
+      <div class="doc-card">
+        <div class="doc-icon">📕</div>
+        <h3>Final Report — Group</h3>
+        <p>Comprehensive group report covering the complete system design, implementation, evaluation, and conclusions.</p>
+        <span class="doc-status status-pending">Pending</span>
+        <a href="#" class="doc-link" style="color: var(--text-light); pointer-events: none;">Link Pending</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">📗</div>
+        <h3>Final Reports — Individual</h3>
+        <p>Individual reports from each team member detailing their specific component contributions.</p>
+        <span class="doc-status status-pending">Pending</span>
+        <a href="#" class="doc-link" style="color: var(--text-light); pointer-events: none;">Link Pending</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════ PRESENTATIONS ════ -->
+<!-- PRESENTATIONS -->
 <section id="presentations">
   <div class="container">
     <span class="section-tag">Presentations</span>
-    <h2 class="section-title">Presentation Slides & Demos</h2>
-    <p class="section-desc">Slides and demo recordings from all progress and final presentations throughout the ShilpaSuraksha research journey.</p>
-
+    <h2 class="section-title">Presentation Slides</h2>
+    <p class="section-desc">Slides from all progress and final presentations throughout the ShilpaSuraksha research journey.</p>
     <div class="pres-grid">
       <div class="pres-card">
         <div class="pres-thumb t1">📋</div>
         <div class="pres-info">
           <h3>Project Proposal Presentation</h3>
           <p>Introduction to ShilpaSuraksha — problem, motivation, proposed solution, and initial architecture.</p>
-          <a href="https://docs.google.com/presentation/d/1FxzUgd3vdLjX1bChDgG49SH5Wqm5kD9R/edit?usp=drive_link&ouid=102955434336409663104&rtpof=true&sd=true" class="pres-link" target="_blank">View Slides ↗</a>
+          <a href="#" class="pres-link">View Slides ↗</a>
         </div>
       </div>
       <div class="pres-card">
@@ -919,15 +1037,7 @@
         <div class="pres-info">
           <h3>Progress Presentation I</h3>
           <p>50% completion review: database design, authentication, component UI, and early ML model results.</p>
-          <a href="https://docs.google.com/presentation/d/1WrBW2rdS9jb5jjBRavnCfNNwEAMrUdoL/edit?usp=drive_link&ouid=102955434336409663104&rtpof=true&sd=true" class="pres-link" target="_blank">View Slides ↗</a>
-        </div>
-      </div>
-      <div class="pres-card">
-        <div class="pres-thumb" style="background: linear-gradient(135deg, #e0f2e9, #b2dfc5);">🎬</div>
-        <div class="pres-info">
-          <h3>PP1 Demo Video</h3>
-          <p>Live demonstration recording from Progress Presentation I showing 50% system completion walkthrough.</p>
-          <a href="https://drive.google.com/file/d/1dmMETwDsNLaMKNMZTV9LzTzr5kBzpxe5/view?usp=drive_link" class="pres-link" target="_blank">Watch Demo ↗</a>
+          <a href="#" class="pres-link">View Slides ↗</a>
         </div>
       </div>
       <div class="pres-card">
@@ -935,15 +1045,7 @@
         <div class="pres-info">
           <h3>Progress Presentation II</h3>
           <p>90% completion: full system demo, integrated AI components, and dashboard analytics walkthrough.</p>
-          <a href="https://docs.google.com/presentation/d/1H2RpaP5Gd2J4qqkMqsQ9tee8O9ZVdrqw/edit?usp=drive_link&ouid=102955434336409663104&rtpof=true&sd=true" class="pres-link" target="_blank">View Slides ↗</a>
-        </div>
-      </div>
-      <div class="pres-card">
-        <div class="pres-thumb" style="background: linear-gradient(135deg, #fde8d8, #f5c2a0);">🎬</div>
-        <div class="pres-info">
-          <h3>PP2 Demo Video</h3>
-          <p>Live demonstration from Progress Presentation II — full integrated platform walkthrough with all four AI components.</p>
-          <a href="https://drive.google.com/file/d/1XO2SQwX6h75x17d_XPVozgXPW_C3MMwD/view?usp=drive_link" class="pres-link"  target="_blank">Watch Demo ↗</a>
+          <a href="#" class="pres-link">View Slides ↗</a>
         </div>
       </div>
       <div class="pres-card">
@@ -951,14 +1053,78 @@
         <div class="pres-info">
           <h3>Final Presentation</h3>
           <p>Complete system evaluation, model accuracy results, limitations, and future work directions.</p>
-          <a href="https://drive.google.com/drive/folders/183NO7k1WSHf9lyuH4mAZFM1bmf8EG9bz?usp=drive_link" class="pres-link" style="color: var(--text-light);" target="_blank">Link Pending</a>
+          <a href="#" class="pres-link" style="color: var(--text-light);">Link Pending</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════ ABOUT ════ -->
+<!-- CHECKLISTS -->
+<section id="checklists">
+  <div class="container">
+    <span class="section-tag">Checklists</span>
+    <h2 class="section-title">Project Checklists</h2>
+    <p class="section-desc">
+      Structured evaluation checklists used across the ShilpaSuraksha research project to track progress, quality, and submission requirements at each milestone.
+    </p>
+
+    <div class="checklist-cards">
+      <!-- Checklist 01 -->
+      <div class="checklist-card cl-1 fade-in">
+        <div class="checklist-card-header">
+          <div class="cl-icon-wrap">✅</div>
+          <div class="cl-header-text">
+            <h3>Checklist 01</h3>
+            <span>Project Proposal & Initial Assessment</span>
+          </div>
+        </div>
+        <div class="checklist-card-body">
+          <p>Covers the initial project proposal evaluation criteria — problem statement clarity, research objectives, literature review completeness, and preliminary methodology review submitted to the panel.</p>
+          <a href="https://drive.google.com/drive/folders/1NcDGA9n20PCPavsBZN_4M4EVLDwJPMVC?usp=drive_link" target="_blank" class="checklist-link">
+            Open in Drive ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Checklist 02 -->
+      <div class="checklist-card cl-2 fade-in">
+        <div class="checklist-card-header">
+          <div class="cl-icon-wrap">📋</div>
+          <div class="cl-header-text">
+            <h3>Checklist 02</h3>
+            <span>Progress Presentation Evaluation</span>
+          </div>
+        </div>
+        <div class="checklist-card-body">
+          <p>Documents the evaluation criteria for Progress Presentations I and II — system design completeness, ML model training progress, integration milestones, and UI/UX implementation quality assessments.</p>
+          <a href="https://drive.google.com/drive/folders/189uKgS5ajrOfNvqbPUITqKv_n_IKi3iM?usp=drive_link" target="_blank" class="checklist-link">
+            Open in Drive ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Checklist 03 -->
+      <div class="checklist-card cl-3 fade-in">
+        <div class="checklist-card-header">
+          <div class="cl-icon-wrap">🏁</div>
+          <div class="cl-header-text">
+            <h3>Checklist 03</h3>
+            <span>Final Submission & Viva</span>
+          </div>
+        </div>
+        <div class="checklist-card-body">
+          <p>Final evaluation checklist covering the research paper, final report documentation standards, system demonstration requirements, individual viva preparation criteria, and overall project deliverable completeness.</p>
+          <a href="https://drive.google.com/drive/folders/1BCAN-thvrrjMgwxBJz8biQIXjvfs5EIw?usp=drive_link" target="_blank" class="checklist-link">
+            Open in Drive ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / TEAM -->
 <section id="about">
   <div class="container">
     <span class="section-tag">About Us</span>
@@ -966,41 +1132,71 @@
     <p class="section-desc">ShilpaSuraksha is a collaborative final-year research project by four undergraduate students at Sri Lanka Institute of Information Technology (SLIIT).</p>
 
     <div class="team-grid">
+
+      <!-- Iresh -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-1">IR</div>
+        <div class="member-avatar av-1">
+          <img src="Iresh.jpeg" alt="Iresh"
+               onerror="this.setAttribute('data-error','true')">
+          <span class="avatar-fallback">IR</span>
+        </div>
         <div class="member-name">Iresh</div>
         <div class="member-role">Component 01 Lead</div>
         <div class="member-comp">Early Warning System</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Academic data entry, attendance/marks analysis, ML risk classification model training and integration.</p>
-        <a href="mailto:iresheranga2020al@gmail.com" class="member-email">iresheranga2020al@gmail.com</a>
+        <p class="member-desc">Academic data entry, attendance/marks analysis, ML risk classification model training and integration.</p>
+        <a href="mailto:shenori@example.com" class="member-email">shenori@example.com</a>
+        <div class="member-socials">
+          <a href="https://www.linkedin.com/in/shenori" target="_blank" class="linkedin-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
+      <!-- Shenori -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-2">SH</div>
+        <div class="member-avatar av-2">
+          <img src="Shenori.jpg" alt="Shenori"
+               onerror="this.setAttribute('data-error','true')">
+          <span class="avatar-fallback">SH</span>
+        </div>
         <div class="member-name">Shenori</div>
         <div class="member-role">Component 02 Lead</div>
         <div class="member-comp">Emotion & Behavioral Analysis</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Hand drawing and handwriting dataset collection, CNN model design, behavioral classification and interface integration.</p>
-        <a href="mailto:shenoriweerakoon@gmail.com" class="member-email">shenoriweerakoon@gmail.com</a>
+        <p class="member-desc">Hand drawing and handwriting dataset collection, CNN model design, behavioral classification and interface integration.</p>
+        <a href="mailto:shenori@example.com" class="member-email">shenori@example.com</a>
       </div>
+
+      <!-- Kavini -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-3">KV</div>
+        <div class="member-avatar av-3">
+          <img src="Kavini.jpg" alt="Kavini"
+               onerror="this.setAttribute('data-error','true')">
+          <span class="avatar-fallback">KV</span>
+        </div>
         <div class="member-name">Kavini</div>
         <div class="member-role">Component 03 Lead</div>
         <div class="member-comp">Intelligent Recommendation System</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">At-risk student display, learning path generation engine, activity/task recommendation, and progress tracking interface.</p>
-        <a href="mailto:kaviniwickramasooriya@gmail.com" class="member-email">kaviniwickramasooriya@gmail.com</a>
+        <p class="member-desc">At-risk student display, learning path generation engine, activity/task recommendation, and progress tracking interface.</p>
+        <a href="mailto:kavini@example.com" class="member-email">kavini@example.com</a>
       </div>
+
+      <!-- Sahan -->
       <div class="member-card fade-in">
-        <div class="member-avatar av-4">SA</div>
+        <div class="member-avatar av-4">
+          <img src="Sahan.jpg" alt="Sahan"
+               onerror="this.setAttribute('data-error','true')">
+          <span class="avatar-fallback">SA</span>
+        </div>
         <div class="member-name">Sahan</div>
         <div class="member-role">Component 04 Lead</div>
         <div class="member-comp">Dashboard & Intervention Orchestrator</div>
-        <p style="font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem;">Student clustering algorithms, interactive analytics dashboard, intervention panel design, and outcome tracking.</p>
-        <a href="mailto:sahanupendra@gmail.com" class="member-email">sahanupendra@gmail.com</a>
+        <p class="member-desc">Student clustering algorithms, interactive analytics dashboard, intervention panel design, and outcome tracking.</p>
+        <a href="mailto:sahan@example.com" class="member-email">sahan@example.com</a>
       </div>
+
     </div>
 
-    <!-- Project metadata strip -->
     <div style="margin-top: 3rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem;">
       <div>
         <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-light); margin-bottom: 0.4rem; font-weight: 600;">Institution</div>
@@ -1008,7 +1204,7 @@
       </div>
       <div>
         <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-light); margin-bottom: 0.4rem; font-weight: 600;">Degree Programme</div>
-        <p style="color: white; font-weight: 500;">BSc (Hons) in Information Technology specialized in Software Engineering</p>
+        <p style="color: white; font-weight: 500;">BSc (Hons) in Information Technology</p>
       </div>
       <div>
         <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-light); margin-bottom: 0.4rem; font-weight: 600;">Academic Year</div>
@@ -1022,13 +1218,12 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ CONTACT ════ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <span class="section-tag">Contact Us</span>
     <h2 class="section-title">Get in Touch</h2>
     <p class="section-desc">Interested in ShilpaSuraksha? Have questions about the research? We'd love to hear from you.</p>
-
     <div class="contact-wrap">
       <div class="contact-info">
         <h3>Contact Information</h3>
@@ -1040,16 +1235,9 @@
           </div>
         </div>
         <div class="contact-item">
-          <div class="c-icon">🎓</div>
-          <div class="c-text">
-            <p>SLIIT CDAP</p>
-            <a href="https://mysliit.sharepoint.com/:f:/s/CDAPSubmissionCloud/IgA2d8nXtUrnRqDfkMeF2CZDAbwLihU96pYot3bUDXnrPJs?e=zZbwMn" target="_blank" style="color: var(--primary-light);">Visit CDAP Portal ↗</a>
-          </div>
-        </div>
-        <div class="contact-item">
           <div class="c-icon">🔗</div>
           <div class="c-text">
-            <p>Project GitHub</p>
+            <p>Project GitHub (Frontend)</p>
             <a href="https://github.com/IreshEranga/Shilpa-Suraksha" target="_blank" style="color: var(--primary-light);">View On GitHub ↗</a>
           </div>
         </div>
@@ -1068,122 +1256,91 @@
           </div>
         </div>
       </div>
-
-      <!-- Contact form — submits via Web3Forms API -->
       <div class="contact-form">
-        <h3>Send a Message</h3>
-        <div class="form-error" id="formError">Something went wrong. Please try again.</div>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
-          <input type="hidden" name="access_key" value="3c2b6575-366b-4b10-b9cd-dd28b265323b">
-          <input type="hidden" name="subject" id="hiddenSubject" value="New message from ShilpaSuraksha Website">
-          <input type="hidden" name="from_name" value="ShilpaSuraksha Website">
-          <input type="checkbox" name="botcheck" style="display:none;">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Your full name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <!-- Updates hidden subject field so email subject reflects selection -->
-            <select id="subject" name="subject_type" onchange="document.getElementById('hiddenSubject').value = 'ShilpaSuraksha – ' + this.options[this.selectedIndex].text">
-              <option>General Inquiry</option>
-              <option>Research Collaboration</option>
-              <option>Technical Question</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
-          </div>
-          <button type="submit" class="btn-submit" id="submitBtn">
-            <span id="btnText">Send Message</span>
-            <span id="btnSpinner" style="display:none;">Sending…</span>
-          </button>
-        </form>
-        <div class="form-success" id="formSuccess">
-          <div class="success-icon">✅</div>
-          <h4>Message Sent!</h4>
-          <p>Thank you for reaching out. We'll get back to you soon.</p>
+        <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text);">Send a Message</h3>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name">
         </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option>General Inquiry</option>
+            <option>Research Collaboration</option>
+            <option>Technical Question</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Your message here..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="alert('Thank you! Your message has been received.')">Send Message</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════ FOOTER ════ -->
+<!-- FOOTER -->
 <footer>
   <p style="margin-bottom: 0.4rem;">
-    <strong style="color: rgba(255,255,255,0.7);">Shilpa Suraksha</strong> — Academic Risk Prediction System for Primary Students in Sri Lanka
+    <strong style="color: rgba(255,255,255,0.7);">ShilpaSuraksha</strong> — Academic Risk Prediction System for Primary Students in Sri Lanka
   </p>
   <p>© 2025/2026 · Sri Lanka Institute of Information Technology (SLIIT) · Final Year Research Project</p>
+  <p style="margin-top: 0.5rem;">
+    <a href="https://www.figma.com/design/tP7dg6piYrXdRUZNN3RFeX/ShilpaSuraksha" target="_blank">Figma Design</a>
+    &nbsp;·&nbsp;
+    <a href="https://drive.google.com/drive/folders/1WEB_osFifj7BoiKZiVloZPfuGllwsv7j" target="_blank">Datasets</a>
+    &nbsp;·&nbsp;
+    <a href="http://cdap.sliit.lk/" target="_blank">SLIIT CDAP</a>
+  </p>
 </footer>
 
 <script>
-  // ─── Scroll-triggered fade-in for .fade-in elements ──────────────────────
+  /* Scroll fade-in */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // ─── Deepen nav background slightly on scroll ─────────────────────────────
+  /* Nav scroll opacity */
   window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.background =
-      window.scrollY > 60 ? 'rgba(13,27,42,0.98)' : 'rgba(13,27,42,0.96)';
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 60 ? 'rgba(13,27,42,0.98)' : 'rgba(13,27,42,0.96)';
   });
 
-  // ─── Contact form submission via Web3Forms ────────────────────────────────
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const btn        = document.getElementById('submitBtn');
-    const btnText    = document.getElementById('btnText');
-    const btnSpinner = document.getElementById('btnSpinner');
-    const formError  = document.getElementById('formError');
-
-    formError.style.display = 'none';
-    btn.disabled   = true;
-    btnText.style.display   = 'none';
-    btnSpinner.style.display= 'inline';
-
-    // FIX: Send raw FormData instead of converting to JSON. 
-    // This is much more reliable for Web3Forms and avoids CORS preflight issues.
-    const formData = new FormData(e.target);
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        // Note: Do not set 'Content-Type' when sending FormData. 
-        // The browser automatically sets it to 'multipart/form-data' with the correct boundaries.
-        body: formData
-      });
-      
-      const result = await res.json();
-
-      if (result.success) {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      } else {
-        formError.textContent = result.message || 'Something went wrong. Please try again.';
-        formError.style.display = 'block';
-        btn.disabled = false;
-        btnText.style.display = 'inline';
-        btnSpinner.style.display = 'none';
-      }
-    } catch (err) {
-      console.error("Form Submission Error:", err);
-      // Added a note about adblockers to the error message for better UX
-      formError.textContent = 'Network error. Please check your connection or disable your adblocker and try again.';
-      formError.style.display = 'block';
-      btn.disabled = false;
-      btnText.style.display = 'inline';
-      btnSpinner.style.display = 'none';
-    }
+  /* Mobile nav toggle */
+  function toggleMobileNav() {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display = isOpen ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(13,27,42,0.98)';
+    links.style.padding = '1rem 1.5rem 1.5rem';
+    links.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+    if (isOpen) links.style.display = 'none';
   }
-</script>
 
+  /* Image error fallback */
+  document.querySelectorAll('.member-avatar img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.setAttribute('data-error', 'true');
+      const fallback = this.nextElementSibling;
+      if (fallback) {
+        fallback.style.display = 'flex';
+        fallback.style.alignItems = 'center';
+        fallback.style.justifyContent = 'center';
+      }
+    });
+  });
+</script>
 </body>
 </html>
